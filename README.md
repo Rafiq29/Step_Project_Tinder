@@ -1,3 +1,3 @@
 # Step_Project_Tinder
 
-Farid Akifzade, Orxan Hashimov, Rafiq babayev
+Farid Akifzade, Orxan Hashimov, Rafiq Babayev
