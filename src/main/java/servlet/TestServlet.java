@@ -10,7 +10,7 @@ public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter writer = resp.getWriter();
-        writer.println("Rafiq the best");
+        writer.println("Hello World");
         writer.close();
     }
 }

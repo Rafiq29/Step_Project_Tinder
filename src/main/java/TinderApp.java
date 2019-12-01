@@ -1,7 +1,9 @@
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import servlet.Servlet;
+import servlet.LikedServlet;
+import servlet.LoginServlet;
+import servlet.MessagesServlet;
 import servlet.TestServlet;
 
 public class TinderApp {
@@ -10,7 +12,9 @@ public class TinderApp {
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.addServlet(new ServletHolder(new TestServlet()),"/users/*");
-        handler.addServlet(new ServletHolder(new Servlet()),"/*");
+        handler.addServlet(new ServletHolder(new LoginServlet()),"/login/*");
+        handler.addServlet(new ServletHolder(new MessagesServlet()),"/messages/*");
+        handler.addServlet(new ServletHolder(new LikedServlet()),"/liked");
 
         server.setHandler(handler);
         server.start();
