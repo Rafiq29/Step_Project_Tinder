@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserServlet extends HttpServlet {
+public class UsersServlet extends HttpServlet {
     HashMap<String,String> profiles = new HashMap<>();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
