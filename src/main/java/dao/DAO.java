@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-public interface DAO <T>{
+public interface DAO <T> extends Iterable<T> {
     void read(T user);
     List<T> getDatabase();
 }
