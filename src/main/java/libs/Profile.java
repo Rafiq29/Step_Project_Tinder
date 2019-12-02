@@ -1,4 +1,4 @@
-package servlet;
+package libs;
 
 public class Profile {
     private String name;
