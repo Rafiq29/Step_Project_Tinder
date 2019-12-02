@@ -20,6 +20,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        //TODO: in DAO save(req.getParameter(name),req.getParameter(surname),req.getParameter(profession),
+        //TODO:  req.getParameter(email),req.getParameter(pass))
     }
 }
