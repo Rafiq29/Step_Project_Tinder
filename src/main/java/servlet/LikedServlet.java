@@ -21,7 +21,7 @@ public class LikedServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //After the user had clicked on all the available profiles
+        //TODO:After the user had clicked on all the available profiles
         resp.sendRedirect("./content/people-list.html");
     }
 
