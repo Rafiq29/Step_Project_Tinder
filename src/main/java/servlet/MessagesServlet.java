@@ -20,8 +20,8 @@ public class MessagesServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Create an adding message to dao
+        //TODO:Create an adding message to dao
         MessagesServlet messagesServlet = new MessagesServlet();
-        //messagesServlet.add(message);
+        //TODO:messagesServlet.add(message) not implemented yet
     }
 }

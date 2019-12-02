@@ -26,7 +26,7 @@ public class UsersServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        //Add POST request handler on the server and store the user's choice (yes or no) on the server (in any form)
+        //TODO:Add POST request handler on the server and store the user's choice (yes or no) on the server (in any form)
         resp.sendRedirect("./content/like-page.html");
     }
 }
