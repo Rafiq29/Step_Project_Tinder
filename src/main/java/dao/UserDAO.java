@@ -12,6 +12,6 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public List<User> getDatabase() {
-        return null;
+        throw new RuntimeException("Not implemented yet");
     }
 }

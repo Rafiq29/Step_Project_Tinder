@@ -14,6 +14,6 @@ public class MessageDAO implements DAO<Message> {
 
     @Override
     public List getDatabase() {
-        return null;
+        throw new RuntimeException("Not implemented yet");
     }
 }
