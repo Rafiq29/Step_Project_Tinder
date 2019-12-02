@@ -1,7 +1,20 @@
 package service;
 
+import dao.UserDAO;
+import libs.LoginException;
+import libs.User;
+
 public class LoginService {
-    public boolean check(String username, String password) {
-        throw new RuntimeException("not implemented yet");
+    private UserDAO users;
+    LoginService()
+    {
+        users = new UserDAO();
+    }
+    public boolean check(User user) throws LoginException {
+        for (User us: users) {
+            if (us.equals(user))
+                return true;
+        }
+        throw new LoginException("Login failed");
     }
 }
