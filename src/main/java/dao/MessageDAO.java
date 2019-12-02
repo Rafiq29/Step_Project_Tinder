@@ -9,6 +9,7 @@ public class MessageDAO implements DAO<Message> {
     @Override
     public void read(Message user) {
 
+
     }
 
     @Override
