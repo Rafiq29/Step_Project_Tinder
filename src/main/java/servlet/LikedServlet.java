@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 public class LikedServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Path path = Paths.get("content/people-list.html");
+        Path path = Paths.get("./content/people-list.html");
         ServletOutputStream servletOutputStream =resp.getOutputStream();
         Files.copy(path,servletOutputStream);
     }
@@ -22,7 +22,7 @@ public class LikedServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //After the user had clicked on all the available profiles
-        RedirectServlet rs = new RedirectServlet("/liked");
+        resp.sendRedirect("./content/people-list.html");
     }
 
 
