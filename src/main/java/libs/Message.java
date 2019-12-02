@@ -1,5 +1,7 @@
 package libs;
 
+import java.util.Objects;
+
 public class Message {
     private String message;
     private int userTo;
@@ -21,6 +23,21 @@ public class Message {
 
     public int getUserFrom() {
         return userFrom;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Message)) return false;
+        Message message1 = (Message) o;
+        return userTo == message1.userTo &&
+                userFrom == message1.userFrom &&
+                message.equals(message1.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(message, userTo, userFrom);
     }
 
     @Override
