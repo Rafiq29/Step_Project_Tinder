@@ -1,5 +1,7 @@
 package servlet;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +17,7 @@ public class UsersServlet extends HttpServlet {
     HashMap<String,String> profiles = new HashMap<>();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Path path = Paths.get("content/like-page.html");
+        Path path = Paths.get("./content/like-page.html");
         ServletOutputStream servletOutputStream =resp.getOutputStream();
         Files.copy(path,servletOutputStream);
     }
@@ -23,7 +25,8 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
         //Add POST request handler on the server and store the user's choice (yes or no) on the server (in any form)
-        RedirectServlet rs = new RedirectServlet("/users");
+        resp.sendRedirect("./content/like-page.html");
     }
 }
