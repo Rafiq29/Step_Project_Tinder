@@ -8,12 +8,11 @@ public class TinderApp {
         Server server = new Server(8088);
 
         ServletContextHandler handler = new ServletContextHandler();
-
-        handler.addServlet(new ServletHolder(new MessagesServlet()), "/messages/*");
-        handler.addServlet(new ServletHolder(new LikedServlet()), "/liked");
-        handler.addServlet(new ServletHolder(new UsersServlet()), "/users");
-        handler.addServlet(new ServletHolder(new TestServlet()),"/users/*");
-        handler.addServlet(new ServletHolder(new Servlet()),"/*");
+        handler.addServlet(new ServletHolder(new MenuServlet()),"/");
+        handler.addServlet(new ServletHolder(new UsersServlet()),"/users/*");
+        handler.addServlet(new ServletHolder(new LoginServlet()),"/login/*");
+        handler.addServlet(new ServletHolder(new MessagesServlet()),"/messages/*");
+        handler.addServlet(new ServletHolder(new LikedServlet()),"/liked");
 
         server.setHandler(handler);
         server.start();
