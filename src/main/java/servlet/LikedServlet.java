@@ -20,6 +20,7 @@ public class LikedServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         //After the user had clicked on all the available profiles
         RedirectServlet rs = new RedirectServlet("/liked");
     }

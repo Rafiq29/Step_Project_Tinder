@@ -22,7 +22,7 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //When a Yes/No button is pressed - send a POST request to the server (there is no handler there at the moment)
+
         //Add POST request handler on the server and store the user's choice (yes or no) on the server (in any form)
         RedirectServlet rs = new RedirectServlet("/users");
     }
