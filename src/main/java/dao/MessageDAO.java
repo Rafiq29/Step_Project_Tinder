@@ -1,7 +1,9 @@
 package dao;
 
+import libs.DbConnection;
 import libs.Message;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +17,7 @@ public class MessageDAO implements DAO<Message> {
 
     @Override
     public void read(Message user) {
-
+        Connection connection = DbConnection.getConnection();
     }
 
     @Override

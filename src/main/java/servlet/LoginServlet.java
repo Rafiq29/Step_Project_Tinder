@@ -1,4 +1,5 @@
 package servlet;
+import libs.User;
 import service.LoginService;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("pass");
         try {
             LoginService loginService = new LoginService();
-            loginService.check(login,password);
+            loginService.check(new User(login,password));
             resp.sendRedirect("./content/like-page.html");
         }
         catch (Exception ex) {

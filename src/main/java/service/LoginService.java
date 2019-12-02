@@ -6,7 +6,7 @@ import libs.User;
 
 public class LoginService {
     private UserDAO users;
-    LoginService()
+    public LoginService()
     {
         users = new UserDAO();
     }
