@@ -4,16 +4,15 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import servlet.*;
 
 public class TinderApp {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         Server server = new Server(8088);
 
         ServletContextHandler handler = new ServletContextHandler();
-        handler.addServlet(new ServletHolder(new MenuServlet()),"/");
         handler.addServlet(new ServletHolder(new UsersServlet()),"/users/*");
         handler.addServlet(new ServletHolder(new LoginServlet()),"/login/*");
         handler.addServlet(new ServletHolder(new MessagesServlet()),"/messages/*");
         handler.addServlet(new ServletHolder(new LikedServlet()),"/liked");
-
+        handler.addServlet(new ServletHolder(new MenuServlet()),"/*");
         server.setHandler(handler);
         server.start();
         server.join();
