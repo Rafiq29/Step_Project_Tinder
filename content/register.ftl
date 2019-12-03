@@ -11,9 +11,11 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
+    ${boot}
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+    ${style}
     <link rel="stylesheet" href="css/style.css">
 </head>
 

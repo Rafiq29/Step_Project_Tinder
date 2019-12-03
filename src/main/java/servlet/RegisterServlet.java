@@ -1,21 +1,22 @@
 package servlet;
 
+import libs.TemplateEngine;
+import service.ManuallyAddCss;
+
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.HashMap;
 
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Path path = Paths.get("./content/register.html");
-        ServletOutputStream servletOutputStream =resp.getOutputStream();
-        Files.copy(path,servletOutputStream);
+        TemplateEngine engine = new TemplateEngine("./content");
+        ManuallyAddCss addCss = new ManuallyAddCss();
+        HashMap<String, Object> data = addCss.addCss(true, true, false);
+        engine.render("register.ftl",data,resp);
     }
 
     @Override
