@@ -1,7 +1,5 @@
 package servlet;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;

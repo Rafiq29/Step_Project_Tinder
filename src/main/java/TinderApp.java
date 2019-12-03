@@ -1,8 +1,11 @@
+import libs.DbConnection;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.log.*;
 import servlet.*;
+
+import java.sql.Connection;
 
 public class TinderApp {
     public static void main(String[] args) throws Exception {

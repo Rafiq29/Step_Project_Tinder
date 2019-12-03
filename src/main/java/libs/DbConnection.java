@@ -6,12 +6,22 @@ import java.sql.SQLException;
 
 public class DbConnection {
   //TODO: Write our URL
-  private static final String DB_URL = "jdbc:postgres://raja.db.elephantsql.com:5432/rqacvejn ";
-//  private static final String DB_URL = "jdbc:postgresql://localhost:5432/ibatech";
-//  private static final String DB_URLM = "jdbc:mysql://localhost:3306/logistics";
-  private static final String USERNAME = "rqacvejn";
-  private static final String USER_PASS = "pyZWYiqIttQCOkgKM44e-eDWU_ntueVG";
 
+//  private static final String DB_URL = "jdbc:postgres://raja.db.elephantsql.com:5432/rqacvejn ";
+//  private static final String DB_URL = "jdbc:postgresql://localhost:5432/ibatech";
+  private static final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3N1ZmnuWJM";
+  private static final String USERNAME = "3N1ZmnuWJM";
+  private static final String USER_PASS = "3G4FBViDOx";
+/*
+* Created!
+* You have successfully created a new database. The details are below.
+* Username: 3N1ZmnuWJM
+* Database name: 3N1ZmnuWJM
+* Password: 3G4FBViDOx
+* Server: remotemysql.com
+* Port: 3306
+* These are the username and password to log in to your database and phpMyAdmin
+*/
   private static Connection connection;
 
   private DbConnection() {}
