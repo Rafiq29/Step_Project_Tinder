@@ -1,23 +1,23 @@
 package servlet;
 
+import libs.TemplateEngine;
+import service.ManuallyAddCss;
+
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class UsersServlet extends HttpServlet {
     HashMap<String,String> profiles = new HashMap<>();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Path path = Paths.get("./content/like-page.html");
-        ServletOutputStream servletOutputStream =resp.getOutputStream();
-        Files.copy(path,servletOutputStream);
+        TemplateEngine engine = new TemplateEngine("./content");
+        ManuallyAddCss addCss = new ManuallyAddCss();
+        HashMap<String, Object> data = addCss.addCss(true, true, true);
+        engine.render("like-page.ftl",data,resp);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class UsersServlet extends HttpServlet {
 
 
         //TODO:Add POST request handler on the server and store the user's choice (yes or no) on the server (in any form)
-        resp.sendRedirect("./content/like-page.html");
+        resp.sendRedirect("./content/like-page.ftl");
     }
 }

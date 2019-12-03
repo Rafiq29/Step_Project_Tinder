@@ -6,14 +6,10 @@ import service.LoginService;
 import service.ManuallyAddCss;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class LoginServlet extends HttpServlet {
@@ -29,11 +25,11 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("email");
         String password = req.getParameter("pass");
-        // TODO Farid's note : replace "./content/like-page.html" to servlet path html redirect doesn't work use servlet path
+        // TODO Farid's note : replace "./content/like-page.ftl" to servlet path html redirect doesn't work use servlet path
         try {
             LoginService loginService = new LoginService();
             loginService.check(new User(login,password));
-            resp.sendRedirect("./content/like-page.html");
+            resp.sendRedirect("./content/like-page.ftl");
         }
         catch (LoginException ex) {
             resp.sendRedirect("./content/login.ftl");

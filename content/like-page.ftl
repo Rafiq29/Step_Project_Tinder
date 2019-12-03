@@ -8,16 +8,16 @@
     <link rel="icon" href="img/favicon.ico">
 
     <title>Like page</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    ${font}
+
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    ${boot}
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="css/style.css">
+    ${style}
 </head>
 <body style="background-color: #f5f5f5;">
 
-<form  method="post">
 <div class="col-4 offset-4">
     <div class="card">
         <div class="card-body">
@@ -40,7 +40,6 @@
         <!--/card-block-->
     </div>
 </div>
-</form>
 
 </body>
 </html>

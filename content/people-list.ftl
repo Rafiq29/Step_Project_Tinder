@@ -6,7 +6,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="img/favicon.ico">
-
     <title>People list</title>
     ${font}
     <!-- Bootstrap core CSS -->
