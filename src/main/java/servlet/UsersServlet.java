@@ -18,6 +18,10 @@ public class UsersServlet extends HttpServlet {
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
         HashMap<String, Object> data = addCss.addCss(true, true, true);
+        //TODO: get image url and username for like
+        data.put("imgURL","");
+        data.put("username","");
+
         engine.render("like-page.ftl",data,resp);
     }
 
@@ -26,7 +30,7 @@ public class UsersServlet extends HttpServlet {
 
 
         LikedService likedService = new LikedService();
-        //likedService.like() TODO:Add POST request handler on the server and store the user's choice (yes or no) on the server (in any form)
+        //TODO likedService.like("user_Like","user_liked")
         resp.sendRedirect("/users/*");
     }
 }

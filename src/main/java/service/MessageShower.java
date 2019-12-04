@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class MessageShower {
     /**
-     *
      * @SenderMessageTemplate
      * <li class="send-msg float-right mb-2">
      *      <p class="pt-1 pb-1 pl-2 pr-2 m-0 rounded">
@@ -22,14 +21,13 @@ public class MessageShower {
      *      <p class="bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded">
      *         _MESSAGE_
      *      </p>
-     *
      *      <span class="receive-msg-time">_RECEIVE_TIME_</span>
      *    </div>
      * </li>
-     *
      * */
     public ArrayList<Message> get()
     {
+
         throw new RuntimeException("Not implemented yet");
     }
 

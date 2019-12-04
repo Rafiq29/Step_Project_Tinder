@@ -1,5 +1,7 @@
 package servlet;
 
+import service.MessageWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +22,7 @@ public class MessagesServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //TODO:Create an adding message to dao
-        MessagesServlet messagesServlet = new MessagesServlet();
-        //TODO:messagesServlet.add(message) not implemented yet
+        MessageWriter messageWriter = new MessageWriter();
+       //TODO  messageWriter.writeMessage("message","Date","ID","User_TO","User_FROM");
     }
 }
