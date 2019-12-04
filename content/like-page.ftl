@@ -23,8 +23,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 text-center">
-                    <img src="https://robohash.org/68.186.255.198.png" alt="" class="mx-auto rounded-circle img-fluid">
-                    <h3 class="mb-0 text-truncated">User name</h3>
+                    <img src=${imgURL} alt="" class="mx-auto rounded-circle img-fluid">
+                    <h3 class="mb-0 text-truncated">${username}</h3>
                     <br>
                 </div>
                 <div class="col-12 col-lg-6">

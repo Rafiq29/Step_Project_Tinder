@@ -18,6 +18,10 @@ public class UsersServlet extends HttpServlet {
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
         HashMap<String, Object> data = addCss.addCss(true, true, true);
+        //TODO: get image url and username for like
+        data.put("imgURL","");
+        data.put("username","");
+
         engine.render("like-page.ftl",data,resp);
     }
 
