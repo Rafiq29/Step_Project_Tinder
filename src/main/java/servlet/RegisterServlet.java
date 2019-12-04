@@ -30,7 +30,5 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //TODO: in DAO save(req.getParameter(name),req.getParameter(surname),req.getParameter(profession),
-        //TODO:  req.getParameter(email),req.getParameter(pass))
     }
 }
