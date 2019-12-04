@@ -16,7 +16,7 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
-    public void read(Message user) {
+    public void read() {
         Connection connection = DbConnection.getConnection();
     }
 

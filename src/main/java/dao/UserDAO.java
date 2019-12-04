@@ -9,7 +9,7 @@ public class UserDAO implements DAO<User> {
     private List<User> users;
 
     @Override
-    public void read(User user) {
+    public void read() {
 
     }
 

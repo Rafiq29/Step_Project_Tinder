@@ -3,6 +3,6 @@ package dao;
 import java.util.List;
 
 public interface DAO <T> extends Iterable<T> {
-    void read(T user);
+    void read();
     List<T> getDatabase();
 }
