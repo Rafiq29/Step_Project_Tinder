@@ -30,7 +30,8 @@ public class LikedServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //TODO:After the user had clicked on all the available profiles Farid's Note: Use servlet path instead of file path
+
+        //TODO:After the user had clicked on all the available profiles Farid's method
         resp.sendRedirect("/liked/*");
     }
 

@@ -26,7 +26,7 @@ public class UsersServlet extends HttpServlet {
 
 
         LikedService likedService = new LikedService();
-        //likedService.like() TODO:Add POST request handler on the server and store the user's choice (yes or no) on the server (in any form)
+        //TODO likedService.like("user_Like","user_liked")
         resp.sendRedirect("/users/*");
     }
 }
