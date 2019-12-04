@@ -27,6 +27,9 @@
     <label for="surname" class="sr-only">Surname</label>
     <input type="text" name="surname" id="surname" class="form-control" placeholder="Surname" required autofocus>
 
+    <label for="gender" class="sr-only">Profession</label>
+    <input type="text" name="gender" id="gender" class="form-control" placeholder="Gender" required autofocus>
+
     <label for="profession" class="sr-only">Profession</label>
     <input type="text" name="profession" id="profession" class="form-control" placeholder="Profession" required autofocus>
 
