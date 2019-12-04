@@ -26,6 +26,11 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
+    public Message getByValue(int id) {
+        return null;
+    }
+
+    @Override
     public Iterator<Message> iterator() {
         return messages.iterator();
     }

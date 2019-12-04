@@ -22,6 +22,11 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
+    public User getByValue(int id) {
+        return null;
+    }
+
+    @Override
     public Iterator<User> iterator() {
         return users.iterator();
     }

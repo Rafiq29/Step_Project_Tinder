@@ -12,11 +12,17 @@ public class LikesDAO implements DAO<Likes> {
     @Override
     public void read() {
         Connection conn = DbConnection.getConnection();
+
     }
 
     @Override
     public List<Likes> getDatabase() {
         throw new RuntimeException("Not implemented yet");
+    }
+
+    @Override
+    public Likes getByValue(int id) {
+        return null;
     }
 
     @Override
