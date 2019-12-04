@@ -1,4 +1,4 @@
-host: remotemysql.com
-user: JJ7pd0Wn9e
-password: bvaqJZ8n31
-database: JJ7pd0Wn9e
+Server:	raja.db.elephantsql.com
+User & Default database:	rqacvejn
+Password:	4LHUJPjL9IEgPnKCbx6TCnUB57YwxbRm
+URL:	postgres://rqacvejn:4LHUJP...@raja.db.elephantsql.com:5432/rqacvejn (no need to use)

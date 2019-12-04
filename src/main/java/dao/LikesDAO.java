@@ -1,28 +1,26 @@
 package dao;
 
 import libs.DbConnection;
-import libs.User;
+import libs.Likes;
 
 import java.sql.Connection;
 import java.util.Iterator;
 import java.util.List;
 
-public class UserDAO implements DAO<User> {
-    private List<User> users;
-
+public class LikesDAO implements DAO<Likes> {
+    List<Likes> likes;
     @Override
     public void read() {
         Connection conn = DbConnection.getConnection();
-
     }
 
     @Override
-    public List<User> getDatabase() {
+    public List<Likes> getDatabase() {
         throw new RuntimeException("Not implemented yet");
     }
 
     @Override
-    public Iterator<User> iterator() {
-        return users.iterator();
+    public Iterator<Likes> iterator() {
+        return likes.iterator();
     }
 }
