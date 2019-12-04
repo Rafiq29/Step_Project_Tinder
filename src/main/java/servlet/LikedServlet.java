@@ -31,7 +31,7 @@ public class LikedServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //TODO:After the user had clicked on all the available profiles Farid's Note: Use servlet path instead of file path
-        resp.sendRedirect("./content/people-list.ftl");
+        resp.sendRedirect("/liked/*");
     }
 
 
