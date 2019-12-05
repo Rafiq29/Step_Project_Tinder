@@ -52,7 +52,11 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public List<Integer> getAllId() {
-        return null;
+        List<Integer> result = new LinkedList<>();
+        users.forEach(user -> {
+            result.add(user.getId());
+        });
+        return result;
     }
 
     @Override
