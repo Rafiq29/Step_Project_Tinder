@@ -15,7 +15,6 @@ import java.util.Optional;
 public class UserDAO implements DAO<User> {
     private List<User> users;
 
-    //TODO: Farid's note: Add gender, profession, imgUrl column to database please
     public UserDAO() {
         users = new LinkedList<>();
         read();
