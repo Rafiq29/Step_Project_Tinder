@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDAO implements DAO<User> {
     private List<User> users;
-
+    //TODO: Farid's note: Add imgUrl column to database please
     @Override
     public void read() {
         Connection conn = DbConnection.getConnection();
