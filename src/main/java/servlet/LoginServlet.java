@@ -1,4 +1,5 @@
 package servlet;
+
 import libs.LoginException;
 import libs.TemplateEngine;
 import libs.User;
@@ -24,7 +25,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("email");
-        String password = req.getParameter("pass");
+        String password = req.getParameter("password");
         try {
             LoginService loginService = new LoginService();
             loginService.check(new User(login,password));

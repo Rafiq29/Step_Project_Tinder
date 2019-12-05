@@ -10,15 +10,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class LikeService {
     private UserDAO users;
-
+    public static boolean isLiked;
     public LikeService() {
         users = new UserDAO();
     }
 
     public void like(int user_likes, int user_liked) throws SQLException {
+        isLiked = true;
         final String SQLQ = "INSERT INTO likes(user_likes, user_liked) VALUES (?,?)";
         Connection connection = DbConnection.getConnection();
         PreparedStatement insertLikes = connection.prepareStatement(SQLQ);
@@ -40,12 +42,14 @@ public class LikeService {
         }
         return allId.get(0);
     }
-
     public Cookie getNext(HashMap<String, Object> data, Cookie[] cookie) {
         int nextUser = getNextUserId(cookie);
-        User byValue = users.getByValue(nextUser);
-        data.put("username", byValue.getUsername());
-        data.put("imgURL", byValue.getImgURL());
+        Optional<User> byValue = users.getByValue(nextUser);
+        byValue.ifPresent(user -> {
+                    data.put("username", user.getUsername());
+                    data.put("imgURL", user.getImgURL());
+                }
+        );
         return new Cookie("%USERLIKE%", String.valueOf(nextUser));
     }
 }

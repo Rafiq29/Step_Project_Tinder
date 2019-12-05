@@ -4,9 +4,11 @@ import libs.DbConnection;
 import libs.Message;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public class MessageDAO implements DAO<Message> {
     private List<Message> messages;
@@ -26,8 +28,18 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
-    public Message getByValue(int id) {
+    public Optional<Message> getByValue(int id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Integer> getAllId() {
         return null;
+    }
+
+    @Override
+    public void clear() throws SQLException {
+
     }
 
     @Override

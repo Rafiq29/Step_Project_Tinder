@@ -1,8 +1,11 @@
 package service;
 
+import dao.MessageDAO;
 import libs.Message;
 
+import javax.servlet.http.Cookie;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class MessageShower {
     /**
@@ -25,10 +28,19 @@ public class MessageShower {
      *    </div>
      * </li>
      * */
-    public ArrayList<Message> get()
+    public Optional<ArrayList<Message>> get(Cookie[] cookies)
     {
-
-        throw new RuntimeException("Not implemented yet");
+        if (cookies != null)
+        {
+            for (Cookie c: cookies) {
+                if (c.getName().equals("%ID%"))
+                {
+                    MessageDAO messages = new MessageDAO();
+                    int senderId = Integer.parseInt(c.getValue());
+                }
+            }
+        }
+        return Optional.empty();
     }
 
     public String convertToSenderMessage(String message)

@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="overflow-y: scroll">
     <div class="row">
         <div class="chat-main col-6 offset-3">
             <div class="col-md-12 chat-header">

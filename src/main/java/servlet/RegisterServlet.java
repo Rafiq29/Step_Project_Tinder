@@ -4,6 +4,7 @@ import libs.TemplateEngine;
 import libs.User;
 import service.ManuallyAddCss;
 import service.RegisterService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +26,10 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RegisterService registerService = new RegisterService();
         try {
-            registerService.register(new User(req.getParameter("name"),req.getParameter("password")));
+            registerService.register(new User(req.getParameter("email"),req.getParameter("password")));
+            resp.sendRedirect("/login/");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

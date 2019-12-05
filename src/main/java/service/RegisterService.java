@@ -14,6 +14,6 @@ public class RegisterService {
         PreparedStatement insertUser = connection.prepareStatement(SQLQ);
         insertUser.setString(1,user.getUsername());
         insertUser.setString(2,user.getPassword());
-        insertUser.execute();
+        insertUser.executeUpdate();
     }
 }

@@ -6,13 +6,12 @@ import libs.User;
 
 public class LoginService {
     private UserDAO users;
-    public LoginService()
-    {
+    public LoginService() {
         users = new UserDAO();
     }
     public boolean check(User user) throws LoginException {
         for (User us: users) {
-            if (us.equals(user))
+            if (us.checkEqual(user))
                 return true;
         }
         throw new LoginException("Login failed");
