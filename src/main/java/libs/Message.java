@@ -3,6 +3,7 @@ package libs;
 import java.util.Objects;
 
 public class Message {
+    private int id;
     private String message;
     private String localId;
     private String dateTime;
@@ -15,6 +16,10 @@ public class Message {
         this.dateTime = dateTime;
         this.userTo = userTo;
         this.userFrom = userFrom;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getMessage() {

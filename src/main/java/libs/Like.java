@@ -3,6 +3,7 @@ package libs;
 import java.util.Objects;
 
 public class Like {
+    private int id;
     private int user_like;
     private int user_liked;
 
@@ -17,6 +18,10 @@ public class Like {
 
     public int getUser_liked() {
         return user_liked;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
