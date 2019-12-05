@@ -6,5 +6,5 @@ public interface DAO <T> extends Iterable<T> {
     void read();
     List<T> getDatabase();
     T getByValue(int id);
-    List<T> getAllId();
+    List<Integer> getAllId();
 }
