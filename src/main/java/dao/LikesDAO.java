@@ -1,14 +1,14 @@
 package dao;
 
 import libs.DbConnection;
-import libs.Likes;
+import libs.Like;
 
 import java.sql.Connection;
 import java.util.Iterator;
 import java.util.List;
 
-public class LikesDAO implements DAO<Likes> {
-    List<Likes> likes;
+public class LikesDAO implements DAO<Like> {
+    List<Like> likes;
     @Override
     public void read() {
         Connection conn = DbConnection.getConnection();
@@ -16,17 +16,17 @@ public class LikesDAO implements DAO<Likes> {
     }
 
     @Override
-    public List<Likes> getDatabase() {
+    public List<Like> getDatabase() {
         throw new RuntimeException("Not implemented yet");
     }
 
     @Override
-    public Likes getByValue(int id) {
+    public Like getByValue(int id) {
         return null;
     }
 
     @Override
-    public Iterator<Likes> iterator() {
+    public Iterator<Like> iterator() {
         return likes.iterator();
     }
 }
