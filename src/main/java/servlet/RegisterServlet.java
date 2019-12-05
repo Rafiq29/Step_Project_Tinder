@@ -26,7 +26,15 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RegisterService registerService = new RegisterService();
         try {
-            registerService.register(new User(req.getParameter("email"),req.getParameter("password")));
+           // String username, String name, String surname, String password, String gender, String profession, String imgURL
+            registerService.register(new User(
+                    req.getParameter("email"),
+                    req.getParameter("name"),
+                    req.getParameter("surname"),
+                    req.getParameter("password"),
+                    req.getParameter("gender"),
+                    req.getParameter("profession"),
+                    ""));
             resp.sendRedirect("/login/");
         } catch (SQLException e) {
             System.out.println(e.getMessage());

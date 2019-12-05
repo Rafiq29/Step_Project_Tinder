@@ -28,7 +28,12 @@
     <input type="text" name="surname" id="surname" class="form-control" placeholder="Surname" required autofocus>
 
     <label for="gender" class="sr-only">Gender</label>
-    <input type="text" name="gender" id="gender" class="form-control" placeholder="Gender" required autofocus>
+    <select id="gender" name="gender" class="form-control" style="height: 45px;" required autofocus>
+        <option value ="none">Nothing</option>
+        <option value ="male" name="male">Male</option>
+        <option value ="female" name="female">Female</option>
+        <option value ="other" name="other">Other</option>
+    </select>
 
     <label for="profession" class="sr-only">Profession</label>
     <input type="text" name="profession" id="profession" class="form-control" placeholder="Profession" required autofocus>

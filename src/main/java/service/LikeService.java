@@ -34,10 +34,12 @@ public class LikeService {
         List<Integer> allId = users.getAllId();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                nextUser = Integer.parseInt(cookie.getValue());
-                int userIdIndex = allId.indexOf(nextUser);
-                if (userIdIndex + 1 < allId.size())
-                    return allId.get(userIdIndex + 1);
+                if(cookie.getName().equals("%USERLIKE%")) {
+                    nextUser = Integer.parseInt(cookie.getValue());
+                    int userIdIndex = allId.indexOf(nextUser);
+                    if (userIdIndex + 1 < allId.size())
+                        return allId.get(userIdIndex + 1);
+                }
             }
         }
         return allId.get(0);

@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         try {
             LoginService loginService = new LoginService();
             loginService.check(new User(login,password));
-            resp.sendRedirect("/users/*");
+            resp.sendRedirect("/like/*");
         }
         catch (LoginException ex) {
             resp.sendRedirect("/login/*");

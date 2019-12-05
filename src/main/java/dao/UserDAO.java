@@ -28,7 +28,10 @@ public class UserDAO implements DAO<User> {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLQ);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                users.add(new User(resultSet.getString("username"), resultSet.getString("password")));
+                //int id, String username, String name, String surname, String password, String gender, String profession, String imgURL
+                users.add(new User(resultSet.getInt("id"), resultSet.getString("username"), resultSet.getString("name"),
+                        resultSet.getString("surname"),resultSet.getString("password"),resultSet.getString("gender")
+                        ,resultSet.getString("profession"),resultSet.getString("imgurl")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

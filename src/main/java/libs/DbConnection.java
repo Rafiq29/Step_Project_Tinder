@@ -9,9 +9,9 @@ public class DbConnection {
 
 //  private static final String DB_URL = "jdbc:postgres://raja.db.elephantsql.com:5432/rqacvejn ";
 //  private static final String DB_URL = "jdbc:postgresql://localhost:5432/ibatech";
-  private static final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3N1ZmnuWJM";
-  private static final String USERNAME = "3N1ZmnuWJM";
-  private static final String USER_PASS = "3G4FBViDOx";
+  private static final String DB_URL = "jdbc:postgresql://raja.db.elephantsql.com:5432/rqacvejn";
+  private static final String USERNAME = "rqacvejn";
+  private static final String USER_PASS = "4LHUJPjL9IEgPnKCbx6TCnUB57YwxbRm";
 /*
 * Created!
 * You have successfully created a new database. The details are below.
