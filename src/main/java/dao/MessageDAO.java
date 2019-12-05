@@ -31,6 +31,11 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
+    public List<Integer> getAllId() {
+        return null;
+    }
+
+    @Override
     public Iterator<Message> iterator() {
         return messages.iterator();
     }

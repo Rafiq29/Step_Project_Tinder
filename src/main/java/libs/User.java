@@ -6,16 +6,21 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private String imgURL;
 
-    public User(int id, String username, String password) {
+    public User(int id, String username, String password, String imgURL) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.imgURL = imgURL;
     }
-    public User(String username, String password) {
+
+    public User(String username, String password, String imgURL) {
         this.username = username;
         this.password = password;
+        this.imgURL = imgURL;
     }
+
     public String getUsername() {
         return username;
     }
@@ -28,6 +33,10 @@ public class User {
         return id;
     }
 
+    public String getImgURL() {
+        return imgURL;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,12 +44,13 @@ public class User {
         User user = (User) o;
         return id == user.id &&
                 username.equals(user.username) &&
-                password.equals(user.password);
+                password.equals(user.password) &&
+                imgURL.equals(user.imgURL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(id, username, password, imgURL);
     }
 
     @Override
@@ -49,6 +59,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", imgURL='" + imgURL + '\'' +
                 '}';
     }
 }

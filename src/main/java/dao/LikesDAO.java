@@ -26,6 +26,11 @@ public class LikesDAO implements DAO<Likes> {
     }
 
     @Override
+    public List<Integer> getAllId() {
+        return null;
+    }
+
+    @Override
     public Iterator<Likes> iterator() {
         return likes.iterator();
     }

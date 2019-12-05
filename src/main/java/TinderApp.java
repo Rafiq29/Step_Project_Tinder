@@ -1,4 +1,3 @@
-import dao.MessageDAO;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -10,7 +9,7 @@ public class TinderApp {
         ServletContextHandler handler = new ServletContextHandler();
 
         handler.addServlet(new ServletHolder(new RegisterServlet()),"/register/*");
-        handler.addServlet(new ServletHolder(new UsersServlet()),"/users/*");
+        handler.addServlet(new ServletHolder(new LikeServlet()),"/like/*");
         handler.addServlet(new ServletHolder(new LoginServlet()),"/login/*");
         handler.addServlet(new ServletHolder(new MessagesServlet()),"/messages/*");
         handler.addServlet(new ServletHolder(new LikedServlet()),"/liked");
