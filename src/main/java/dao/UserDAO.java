@@ -71,6 +71,11 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
+    public void add(User data) {
+        //TODO: INSERT DATA to the database
+    }
+
+    @Override
     public Iterator<User> iterator() {
         return users.iterator();
     }

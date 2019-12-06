@@ -10,4 +10,5 @@ public interface DAO <T> extends Iterable<T> {
     Optional<T> getByValue(int id);
     List<Integer> getAllId();
     void clear() throws SQLException;
+    void add(T data);
 }

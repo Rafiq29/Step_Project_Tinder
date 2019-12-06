@@ -66,6 +66,11 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
+    public void add(Message data) {
+        //TODO: INSERT DATA to the database
+    }
+
+    @Override
     public Iterator<Message> iterator() {
         return messages.iterator();
     }

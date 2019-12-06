@@ -67,6 +67,11 @@ public class LikesDAO implements DAO<Like> {
     }
 
     @Override
+    public void add(Like data) {
+        //TODO: INSERT DATA to the database
+    }
+
+    @Override
     public Iterator<Like> iterator() {
         return likes.iterator();
     }
