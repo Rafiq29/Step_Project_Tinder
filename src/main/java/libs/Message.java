@@ -7,18 +7,19 @@ public class Message {
     private int userTo;
     private int userFrom;
     private String message;
-    private String localId;
+    private int localId;
     private String dateTime;
 
 
-    public Message(int userTo, int userFrom, String message, String localId, String dateTime) {
+    public Message(int userTo, int userFrom, String message, int localId, String dateTime) {
         this.userTo = userTo;
         this.userFrom = userFrom;
         this.message = message;
         this.localId = localId;
         this.dateTime = dateTime;
     }
-    public Message(int id, int userTo, int userFrom, String message, String localId, String dateTime) {
+
+    public Message(int id, int userTo, int userFrom, String message, int localId, String dateTime) {
         this.userTo = userTo;
         this.userFrom = userFrom;
         this.id = id;
@@ -26,6 +27,7 @@ public class Message {
         this.localId = localId;
         this.dateTime = dateTime;
     }
+
     public int getId() {
         return id;
     }
@@ -42,7 +44,7 @@ public class Message {
         return userFrom;
     }
 
-    public String getLocalId() {
+    public int getLocalId() {
         return localId;
     }
 
@@ -55,11 +57,11 @@ public class Message {
         if (this == o) return true;
         if (!(o instanceof Message)) return false;
         Message message1 = (Message) o;
-        return userTo == message1.userTo &&
-                userFrom == message1.userFrom &&
-                message.equals(message1.message) &&
-                localId.equals(message1.localId) &&
-                dateTime.equals(message1.dateTime);
+        return userTo == message1.getUserTo() &&
+                userFrom == message1.getUserFrom() &&
+                message.equals(message1.getMessage()) &&
+                localId == message1.getLocalId() &&
+                dateTime.equals(message1.getDateTime());
     }
 
     @Override

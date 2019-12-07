@@ -12,8 +12,10 @@ public class LoginService {
 
     public int check(User user) throws LoginException {
         for (User us : users) {
-            if (us.checkEqual(user))
+            if (us.checkEqual(user)) {
+                LikeService.liked = false;
                 return us.getId();
+            }
         }
         throw new LoginException("Login failed");
     }

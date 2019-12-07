@@ -31,7 +31,7 @@ public class MessageDAO implements DAO<Message> {
                     resultSet.getInt("user_from"),
                     resultSet.getInt("user_from"),
                     resultSet.getString("messages"),
-                    resultSet.getString("localId"),
+                    resultSet.getInt("localId"),
                     resultSet.getString("dateTime")));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
-    public List getDatabase() {
+    public List<Message> getDatabase() {
         return messages;
     }
 
@@ -55,8 +55,8 @@ public class MessageDAO implements DAO<Message> {
 
     @Override
     public List<Integer> getAllId() {
-        return messages.stream().map(message -> message.getId())
-                .collect(Collectors.toCollection(() -> new LinkedList<Integer>()));
+        return messages.stream().map(Message::getId)
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
     @Override
@@ -78,7 +78,7 @@ public class MessageDAO implements DAO<Message> {
             insertMessage.setInt(1, message.getUserFrom());
             insertMessage.setInt(2, message.getUserTo());
             insertMessage.setString(3, message.getMessage());
-            insertMessage.setString(4, message.getLocalId());
+            insertMessage.setInt(4, message.getLocalId());
             insertMessage.setString(5, message.getDateTime());
 
             insertMessage.executeUpdate();
@@ -89,7 +89,7 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
-    public Stream<Message> stream_convert() {
+    public Stream<Message> stream() {
         return messages.stream();
     }
 
@@ -97,4 +97,20 @@ public class MessageDAO implements DAO<Message> {
     public Iterator<Message> iterator() {
         return messages.iterator();
     }
+
+    public List<Integer> getLocalIds() {
+        return messages.stream()
+                .map(Message::getLocalId)
+                .collect(Collectors.toList());
+    }
+
+    public int getLastLocalId(int sender, int receiver) {
+        return messages.stream()
+                .filter(i -> (i.getUserFrom() == sender && i.getUserTo() == receiver) || (i.getUserFrom() == receiver && i.getUserTo() == sender))
+                .map(Message::getLocalId)
+                .max(Integer::compareTo)
+                .orElse(0);
+    }
+
+
 }

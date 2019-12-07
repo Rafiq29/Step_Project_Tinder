@@ -95,7 +95,7 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public Stream<User> stream_convert() {
+    public Stream<User> stream() {
         return users.stream();
     }
 

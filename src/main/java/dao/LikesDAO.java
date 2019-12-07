@@ -88,7 +88,7 @@ public class LikesDAO implements DAO<Like> {
     }
 
     @Override
-    public Stream<Like> stream_convert() {
+    public Stream<Like> stream() {
         return likes.stream();
     }
 

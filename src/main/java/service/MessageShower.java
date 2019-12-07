@@ -3,7 +3,7 @@ package service;
 import dao.MessageDAO;
 
 public class MessageShower {
-    MessageDAO messages;
+    private MessageDAO messages;
 
     MessageShower() {
         messages = new MessageDAO();
@@ -16,6 +16,7 @@ public class MessageShower {
      *         _MESSAGE_
      *      </p>
      * </li>
+     *
      * @ReceiverMessageTemplate
      * <li class="receive-msg float-left mb-2">
      *    <div class="sender-img">

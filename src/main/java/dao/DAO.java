@@ -12,5 +12,6 @@ public interface DAO <T> extends Iterable<T> {
     List<Integer> getAllId();
     void clear() throws SQLException;
     void add(T data);
-    Stream<T> stream_convert();
+
+    Stream<T> stream();
 }

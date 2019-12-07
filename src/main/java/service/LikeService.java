@@ -16,7 +16,7 @@ public class LikeService {
     private UserDAO users;
     public static boolean liked;
     private int id;
-    int nextUser;
+    private int nextUser;
 
     public LikeService() {
         users = new UserDAO();
@@ -42,24 +42,23 @@ public class LikeService {
 
     private int getNextUserId(Cookie[] cookies) {
         List<Integer> allId = users.getAllId();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("%USERLIKE%")) {
-                    nextUser = Integer.parseInt(cookie.getValue());
-                    if (!isLast())
-                        return allId.get(allId.indexOf(nextUser) + 1);
-                } else if (cookie.getName().equals("%ID%"))
-                    id = Integer.parseInt(cookie.getValue());
-            }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("%USERLIKE%")) {
+                nextUser = Integer.parseInt(cookie.getValue());
+                if (!isLast())
+                    return allId.get(allId.indexOf(nextUser) + 1);
+            } else if (cookie.getName().equals("%ID%"))
+                id = Integer.parseInt(cookie.getValue());
         }
         return nextUser = allId.get(0);
     }
+
     public Cookie getNext(HashMap<String, Object> data, Cookie[] cookie) {
         int nextUser = getNextUserId(cookie);
         Optional<User> byValue = users.getByValue(nextUser);
         byValue.ifPresent(user -> {
-            data.put("id", user.getId());
-            data.put("username", user.getUsername());
+                    data.put("id", user.getId());
+                    data.put("username", user.getUsername());
                     data.put("imgURL", user.getImgURL());
                 }
         );

@@ -34,7 +34,7 @@ public class LikeServlet extends HttpServlet {
         if (id != -1)
             service.like(id);
         if (service.isLast() && LikeService.liked)
-            resp.sendRedirect("/users/*");
+            resp.sendRedirect("/liked/*");
 
         //TODO likedService.like("user_liked")
     }
