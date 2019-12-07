@@ -11,15 +11,28 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class LikeService {
     private UserDAO users;
     public static boolean liked;
     private int id;
-    private int nextUser;
+    private int currUser;
+    private Cookie[] cookies;
 
-    public LikeService() {
+    public LikeService(Cookie[] cookies) {
+        setLocalUserId(cookies);
+        this.cookies = cookies;
         users = new UserDAO();
+    }
+
+    private void setLocalUserId(Cookie[] cookies) {
+        for (Cookie oneCookie : cookies) {
+            if (oneCookie.getName().equals("%ID%")) {
+                id = Integer.parseInt(oneCookie.getValue());
+                break;
+            }
+        }
     }
 
     public void like(int user_liked) {
@@ -37,24 +50,32 @@ public class LikeService {
     }
 
     public boolean isLast() {
-        return nextUser == users.getAllId().size() - 1;
+        List<Integer> allIds = users.getAllId();
+        int size = allIds.size();
+        Integer integer = allIds.get(size - 1);
+        boolean b = currUser >= integer;
+        return b;
     }
 
-    private int getNextUserId(Cookie[] cookies) {
-        List<Integer> allId = users.getAllId();
+    private void getCurrentLikedId() {
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("%USERLIKE%")) {
-                nextUser = Integer.parseInt(cookie.getValue());
-                if (!isLast())
-                    return allId.get(allId.indexOf(nextUser) + 1);
-            } else if (cookie.getName().equals("%ID%"))
-                id = Integer.parseInt(cookie.getValue());
+                currUser = Integer.parseInt(cookie.getValue());
+                break;
+            }
         }
-        return nextUser = allId.get(0);
     }
 
-    public Cookie getNext(HashMap<String, Object> data, Cookie[] cookie) {
-        int nextUser = getNextUserId(cookie);
+    private int getNextUserId() {
+        List<Integer> allId = users.getAllId().stream().filter(oneId -> oneId != id).collect(Collectors.toList());
+        getCurrentLikedId();
+        if (!isLast())
+            return allId.get(allId.indexOf(currUser) + 1);
+        return currUser = allId.get(0);
+    }
+
+    public Cookie getNext(HashMap<String, Object> data) {
+        int nextUser = getNextUserId();
         Optional<User> byValue = users.getByValue(nextUser);
         byValue.ifPresent(user -> {
                     data.put("id", user.getId());

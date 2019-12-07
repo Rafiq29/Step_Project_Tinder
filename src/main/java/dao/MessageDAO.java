@@ -26,13 +26,14 @@ public class MessageDAO implements DAO<Message> {
             final String SQLQ = "SELECT * FROM message";
             PreparedStatement preparedStatement = conn.prepareStatement(SQLQ);
             ResultSet resultSet = preparedStatement.executeQuery();
-            messages.add(new Message(
-                    resultSet.getInt("id"),
-                    resultSet.getInt("user_from"),
-                    resultSet.getInt("user_from"),
-                    resultSet.getString("messages"),
-                    resultSet.getInt("localId"),
-                    resultSet.getString("dateTime")));
+            while (resultSet.next())
+                messages.add(new Message(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("user_from"),
+                        resultSet.getInt("user_from"),
+                        resultSet.getString("messages"),
+                        resultSet.getInt("localId"),
+                        resultSet.getString("dateTime")));
         } catch (SQLException e) {
             e.printStackTrace();
         }

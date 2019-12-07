@@ -27,18 +27,22 @@
                     <h3 class="mb-0 text-truncated">${username}</h3>
                     <br>
                 </div>
-                <form method="post">
-                    <div class="col-12 col-lg-6">
-                        <button type="submit" name="dislike" value="${id}" class="btn btn-outline-danger btn-block">
+
+                <div class="col-12 col-lg-6">
+                    <form method="post">
+                        <button type="submit" name="dislike" class="btn btn-outline-danger btn-block">
                             <span class="fa fa-times"></span> Dislike
                         </button>
-                    </div>
-                    <div class="col-12 col-lg-6">
+                    </form>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <form method="post">
                         <button type="submit" name="like" value="${id}" class="btn btn-outline-success btn-block"><span
                                     class="fa fa-heart"></span> Like
                         </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
+
                 <!--/col-->
             </div>
             <!--/row-->
