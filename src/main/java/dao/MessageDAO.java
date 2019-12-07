@@ -60,6 +60,13 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
+    public Message get(int id) {
+        return stream()
+                .filter(oneMessage -> oneMessage.getId() == id)
+                .collect(Collectors.toList()).get(0);
+    }
+
+    @Override
     public void clear() throws SQLException {
         Connection conn = DbConnection.getConnection();
         final String SQLQ = "DELETE FROM message";
@@ -96,20 +103,6 @@ public class MessageDAO implements DAO<Message> {
     @Override
     public Iterator<Message> iterator() {
         return messages.iterator();
-    }
-
-    public List<Integer> getLocalIds() {
-        return messages.stream()
-                .map(Message::getLocalId)
-                .collect(Collectors.toList());
-    }
-
-    public int getLastLocalId(int sender, int receiver) {
-        return messages.stream()
-                .filter(i -> (i.getUserFrom() == sender && i.getUserTo() == receiver) || (i.getUserFrom() == receiver && i.getUserTo() == sender))
-                .map(Message::getLocalId)
-                .max(Integer::compareTo)
-                .orElse(0);
     }
 
 

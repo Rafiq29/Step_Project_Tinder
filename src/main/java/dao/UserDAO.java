@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class UserDAO implements DAO<User> {
@@ -92,6 +93,11 @@ public class UserDAO implements DAO<User> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public User get(int id) {
+        return stream().filter(oneUser -> oneUser.getId() == id).collect(Collectors.toList()).get(0);
     }
 
     @Override

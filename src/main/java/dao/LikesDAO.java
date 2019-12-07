@@ -96,4 +96,9 @@ public class LikesDAO implements DAO<Like> {
     public Iterator<Like> iterator() {
         return likes.iterator();
     }
+
+    @Override
+    public Like get(int id) {
+        return stream().filter(oneLike -> oneLike.getId() == id).collect(Collectors.toList()).get(0);
+    }
 }
