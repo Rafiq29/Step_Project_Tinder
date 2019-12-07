@@ -30,7 +30,10 @@ public class LikesDAO implements DAO<Like> {
             PreparedStatement preparedStatement = conn.prepareStatement(SQLQ);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                likes.add(new Like(resultSet.getInt("user_likes"), resultSet.getInt("user_liked")));
+                likes.add(new Like(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("user_likes"),
+                        resultSet.getInt("user_liked")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

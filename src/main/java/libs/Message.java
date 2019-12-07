@@ -17,7 +17,14 @@ public class Message {
         this.userTo = userTo;
         this.userFrom = userFrom;
     }
-
+    public Message(int id, String message, String localId, String dateTime, int userTo, int userFrom) {
+        this.id = id;
+        this.message = message;
+        this.localId = localId;
+        this.dateTime = dateTime;
+        this.userTo = userTo;
+        this.userFrom = userFrom;
+    }
     public int getId() {
         return id;
     }

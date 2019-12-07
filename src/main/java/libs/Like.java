@@ -11,7 +11,11 @@ public class Like {
         this.user_like = user_like;
         this.user_liked = user_liked;
     }
-
+    public Like(int id, int user_like, int user_liked) {
+        this.id = id;
+        this.user_like = user_like;
+        this.user_liked = user_liked;
+    }
     public int getUser_like() {
         return user_like;
     }

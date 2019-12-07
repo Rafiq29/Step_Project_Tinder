@@ -25,7 +25,9 @@ public class MessageDAO implements DAO<Message> {
             final String SQLQ = "SELECT * FROM message";
             PreparedStatement preparedStatement = conn.prepareStatement(SQLQ);
             ResultSet resultSet = preparedStatement.executeQuery();
-            messages.add(new Message(resultSet.getString("messages"),
+            messages.add(new Message(
+                    resultSet.getInt("id"),
+                    resultSet.getString("messages"),
                     resultSet.getString("localId"),
                     resultSet.getString("dateTime"),
                     resultSet.getInt("user_from"),
