@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LikesDAO implements DAO<Like> {
     List<Like> likes;
@@ -80,9 +81,15 @@ public class LikesDAO implements DAO<Like> {
             insertLikes.setInt(2, like.getUser_liked());
 
             insertLikes.executeUpdate();
+            likes.add(like);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Stream<Like> stream_convert() {
+        return likes.stream();
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MessageDAO implements DAO<Message> {
     private List<Message> messages;
@@ -80,9 +81,15 @@ public class MessageDAO implements DAO<Message> {
             insertMessage.setString(4, message.getDateTime());
 
             insertMessage.executeUpdate();
+            messages.add(message);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Stream<Message> stream_convert() {
+        return messages.stream();
     }
 
     @Override

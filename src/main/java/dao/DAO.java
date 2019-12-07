@@ -3,6 +3,7 @@ package dao;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public interface DAO <T> extends Iterable<T> {
     void read() throws SQLException;
@@ -11,5 +12,5 @@ public interface DAO <T> extends Iterable<T> {
     List<Integer> getAllId();
     void clear() throws SQLException;
     void add(T data);
-
+    Stream<T> stream_convert();
 }
