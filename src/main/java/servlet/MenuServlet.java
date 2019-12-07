@@ -1,6 +1,5 @@
 package servlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +11,9 @@ import java.nio.file.Paths;
 
 public class MenuServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Path path = Paths.get("content/menu.html");
-        ServletOutputStream servletOutputStream =resp.getOutputStream();
-        Files.copy(path,servletOutputStream);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServletOutputStream servletOutputStream = resp.getOutputStream();
+        Files.copy(path, servletOutputStream);
     }
 }
