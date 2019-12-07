@@ -55,9 +55,7 @@ public class UserDAO implements DAO<User> {
     @Override
     public List<Integer> getAllId() {
         List<Integer> result = new LinkedList<>();
-        users.forEach(user -> {
-            result.add(user.getId());
-        });
+        users.forEach(user -> result.add(user.getId()));
         return result;
     }
 
