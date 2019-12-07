@@ -73,12 +73,13 @@ public class MessageDAO implements DAO<Message> {
         //TODO: INSERT DATA to the database
         try {
             Connection conn = DbConnection.getConnection();
-            final String SQLQ = "INSERT INTO message (user_from, user_to, message, localId, datetime) values (?,?,?,?,?)" ;
+            final String SQLQ = "INSERT INTO message (user_from, user_to, message, localId, datetime) values (?,?,?,?,?)";
             PreparedStatement insertMessage = conn.prepareStatement(SQLQ);
             insertMessage.setInt(1, message.getUserFrom());
             insertMessage.setInt(2, message.getUserTo());
-            insertMessage.setString(3, message.getLocalId());
-            insertMessage.setString(4, message.getDateTime());
+            insertMessage.setString(3, message.getMessage());
+            insertMessage.setString(4, message.getLocalId());
+            insertMessage.setString(5, message.getDateTime());
 
             insertMessage.executeUpdate();
             messages.add(message);
