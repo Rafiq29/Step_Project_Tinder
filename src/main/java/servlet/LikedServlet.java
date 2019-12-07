@@ -16,7 +16,7 @@ public class LikedServlet extends HttpServlet {
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
         HashMap<String, Object> data = addCss.addCss(true, true, true);
-        engine.render("people-list.ftl",data,resp);
+        engine.render("people-list.ftl", data, resp);
     }
 
     @Override

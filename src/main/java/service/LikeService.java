@@ -14,41 +14,52 @@ import java.util.Optional;
 
 public class LikeService {
     private UserDAO users;
-    public static boolean isLiked;
+    public static boolean liked;
+    private int id;
+    int nextUser;
+
     public LikeService() {
         users = new UserDAO();
     }
 
-    public void like(int user_likes, int user_liked) throws SQLException {
-        isLiked = true;
-        final String SQLQ = "INSERT INTO likes(user_likes, user_liked) VALUES (?,?)";
-        Connection connection = DbConnection.getConnection();
-        PreparedStatement insertLikes = connection.prepareStatement(SQLQ);
-        insertLikes.setInt(1, user_likes);
-        insertLikes.setInt(2, user_liked);
-        insertLikes.execute();
+    public void like(int user_liked) {
+        liked = true;
+        try {
+            final String SQLQ = "INSERT INTO likes(user_likes, user_liked) VALUES (?,?)";
+            Connection connection = DbConnection.getConnection();
+            PreparedStatement insertLikes = connection.prepareStatement(SQLQ);
+            insertLikes.setInt(1, id);
+            insertLikes.setInt(2, user_liked);
+            insertLikes.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public boolean isLast() {
+        return nextUser == users.getAllId().size() - 1;
     }
 
     private int getNextUserId(Cookie[] cookies) {
-        int nextUser;
         List<Integer> allId = users.getAllId();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("%USERLIKE%")) {
+                if (cookie.getName().equals("%USERLIKE%")) {
                     nextUser = Integer.parseInt(cookie.getValue());
-                    int userIdIndex = allId.indexOf(nextUser);
-                    if (userIdIndex + 1 < allId.size())
-                        return allId.get(userIdIndex + 1);
-                }
+                    if (!isLast())
+                        return allId.get(allId.indexOf(nextUser) + 1);
+                } else if (cookie.getName().equals("%ID%"))
+                    id = Integer.parseInt(cookie.getValue());
             }
         }
-        return allId.get(0);
+        return nextUser = allId.get(0);
     }
     public Cookie getNext(HashMap<String, Object> data, Cookie[] cookie) {
         int nextUser = getNextUserId(cookie);
         Optional<User> byValue = users.getByValue(nextUser);
         byValue.ifPresent(user -> {
-                    data.put("username", user.getUsername());
+            data.put("id", user.getId());
+            data.put("username", user.getUsername());
                     data.put("imgURL", user.getImgURL());
                 }
         );
