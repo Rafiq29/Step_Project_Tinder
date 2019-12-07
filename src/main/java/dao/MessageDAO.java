@@ -27,11 +27,11 @@ public class MessageDAO implements DAO<Message> {
             ResultSet resultSet = preparedStatement.executeQuery();
             messages.add(new Message(
                     resultSet.getInt("id"),
+                    resultSet.getInt("user_from"),
+                    resultSet.getInt("user_from"),
                     resultSet.getString("messages"),
                     resultSet.getString("localId"),
-                    resultSet.getString("dateTime"),
-                    resultSet.getInt("user_from"),
-                    resultSet.getInt("user_from")));
+                    resultSet.getString("dateTime")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,8 +68,21 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
-    public void add(Message data) {
+    public void add(Message message) {
         //TODO: INSERT DATA to the database
+        try {
+            Connection conn = DbConnection.getConnection();
+            final String SQLQ = "INSERT INTO message (user_from, user_to, message, localId, datetime) values (?,?,?,?,?)" ;
+            PreparedStatement insertMessage = conn.prepareStatement(SQLQ);
+            insertMessage.setInt(1, message.getUserFrom());
+            insertMessage.setInt(2, message.getUserTo());
+            insertMessage.setString(3, message.getLocalId());
+            insertMessage.setString(4, message.getDateTime());
+
+            insertMessage.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

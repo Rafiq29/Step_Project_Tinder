@@ -70,8 +70,19 @@ public class LikesDAO implements DAO<Like> {
     }
 
     @Override
-    public void add(Like data) {
+    public void add(Like like) {
         //TODO: INSERT DATA to the database
+        try {
+            Connection conn = DbConnection.getConnection();
+            final String SQLQ = "INSERT INTO likes (user_likes, user_liked) values (?,?)";
+            PreparedStatement insertLikes = conn.prepareStatement(SQLQ);
+            insertLikes.setInt(1, like.getUser_likes());
+            insertLikes.setInt(2, like.getUser_liked());
+
+            insertLikes.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

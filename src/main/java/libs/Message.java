@@ -4,26 +4,27 @@ import java.util.Objects;
 
 public class Message {
     private int id;
+    private int userTo;
+    private int userFrom;
     private String message;
     private String localId;
     private String dateTime;
-    private int userTo;
-    private int userFrom;
 
-    public Message(String message, String localId, String dateTime, int userTo, int userFrom) {
+
+    public Message(int userTo, int userFrom, String message, String localId, String dateTime) {
+        this.userTo = userTo;
+        this.userFrom = userFrom;
         this.message = message;
         this.localId = localId;
         this.dateTime = dateTime;
+    }
+    public Message(int id, int userTo, int userFrom, String message, String localId, String dateTime) {
         this.userTo = userTo;
         this.userFrom = userFrom;
-    }
-    public Message(int id, String message, String localId, String dateTime, int userTo, int userFrom) {
         this.id = id;
         this.message = message;
         this.localId = localId;
         this.dateTime = dateTime;
-        this.userTo = userTo;
-        this.userFrom = userFrom;
     }
     public int getId() {
         return id;

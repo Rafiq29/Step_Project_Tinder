@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class TemplateEngine {
-    //TODO:Rafiq: Analyze
     /**
      * logger instance
      */
