@@ -1,6 +1,8 @@
 package servlet;
 
 import libs.TemplateEngine;
+import libs.User;
+import service.ManuallyAddCss;
 import service.MessageService;
 
 import javax.servlet.http.Cookie;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MessagesServlet extends HttpServlet {
     private int senderId;
@@ -29,10 +33,21 @@ public class MessagesServlet extends HttpServlet {
                 senderId = Integer.parseInt(oneCookie.getValue());
         receiverId = Integer.parseInt(req.getParameter("id"));
         TemplateEngine engine = new TemplateEngine("./content");
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("messages", service.getMessages(senderId, receiverId));
+        User user = service.getUser(receiverId);
+        List<String> formattedMessages = service.getFormattedMessages(senderId, receiverId);
+        ManuallyAddCss addCss = new ManuallyAddCss();
+        HashMap<String, Object> data = addCss.addCss(true, true, true);
+
+        data.put("userTo", user.getName());
+        if (!formattedMessages.isEmpty())
+            data.put("messages", formattedMessages);
+        else
+            data.put("messages", new LinkedList<Integer>());
+
+
         engine.render("chat.ftl", data, resp);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {

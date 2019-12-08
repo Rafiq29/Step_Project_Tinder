@@ -79,7 +79,6 @@ public class LikesDAO implements DAO<Like> {
             PreparedStatement insertLikes = conn.prepareStatement(SQLQ);
             insertLikes.setInt(1, like.getUser_likes());
             insertLikes.setInt(2, like.getUser_liked());
-
             insertLikes.executeUpdate();
             likes.add(like);
         } catch (SQLException e) {

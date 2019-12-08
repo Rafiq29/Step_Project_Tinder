@@ -16,6 +16,13 @@ import java.util.HashMap;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Cookie[] cookies = req.getCookies();
+        for (Cookie oneCookie : cookies) {
+            if (oneCookie.getName().equals("%ID%")) {
+                oneCookie.setMaxAge(0);
+                resp.addCookie(oneCookie);
+            }
+        }
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
         HashMap<String, Object> data = addCss.addCss(true, true, false);

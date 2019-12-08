@@ -30,7 +30,7 @@
                                 <tr>
                                     <td width="10">
                                         <div class="avatar-img">
-                                            <img class="img-circle" src="${people.imgURL}" alt="${people.username}"/>  
+                                            <img class="img-circle" src="${people.imgURL}"/>  
                                         </div>
                                     </td>
                                     <td class="align-middle">
@@ -43,8 +43,9 @@
                                         ${people.gender}
                                     </td>
                                     <td class="align-middle">
-                                        <form method="get" action="/messages/id">
-                                            <button type="submit" name="id" value="${people.id}"><span>Chat</span>
+                                        <form method="get" action="/messages/">
+                                            <button type="submit" name="id" value="${people.id}"
+                                                    class="btn btn-outline-success btn-block"><span>Chat</span>
                                             </button>
                                         </form>
                                     </td>

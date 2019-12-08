@@ -42,6 +42,9 @@ public class MessageService {
                 "</p><span class=\"receive-msg-time\">" + LocalDateTime.now().toString() + "</div></li>";
     }
 
+    public User getUser(int id) {
+        return users.stream().filter(oneUser -> oneUser.getId() == id).findFirst().orElse(new User("", ""));
+    }
 
     public void write(int sender, int receiver, String message) {
         int lastLocalId = getLastLocalId(sender, receiver);

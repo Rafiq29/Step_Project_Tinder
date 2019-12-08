@@ -15,16 +15,17 @@
     ${style}
 
 </head>
-<body>
-
-<div class="container" style="overflow-y: scroll">
+<body style="overflow-y: scroll">
+<div class="container">
     <div class="row">
         <div class="chat-main col-6 offset-3">
             <div class="col-md-12 chat-header">
                 <div class="row header-one text-white p-1">
                     <div class="col-md-6 name pl-2">
                         <i class="fa fa-comment"></i>
-                        <h6 class="ml-1 mb-0">${userTo}</h6>
+                        <h6 class="ml-1 mb-0">
+                            ${userTo}
+                        </h6>
                     </div>
                     <div class="col-md-6 options text-right pr-0">
                         <i class="fa fa-window-minimize hide-chat-box hover text-center pt-1"></i>
@@ -57,8 +58,10 @@
                         </div>
                         <div class="col-md-7 pl-0">
                             <form method="post">
-                                <input type="text" name="message" class="border-0" placeholder=" Send message"/>
-                                <button type="submit" name="send"><span>Send</span></button>
+                                <input type="text" style="visibility: visible" name="message" class="border-0"
+                                       placeholder=" Send message"/>
+                                <button type="submit" style="visibility: visible" name="send"><span
+                                            style="visibility: visible">Send</span></button>
                             </form>
                         </div>
                         <div class="col-md-3 text-right options-right">

@@ -11,14 +11,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class MenuServlet extends HttpServlet {
+    public boolean isFirstTime = true;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Cookie[] cookies = req.getCookies();
-        for (Cookie oneCookie : cookies) {
-            if (oneCookie.getName().equals("%USERLIKE%") || oneCookie.getName().equals("%ID%")) {
-                oneCookie.setMaxAge(0);
-                resp.addCookie(oneCookie);
+        if (isFirstTime) {
+            Cookie[] cookies = req.getCookies();
+            for (Cookie oneCookie : cookies) {
+                if (oneCookie.getName().equals("%ID%")) {
+                    oneCookie.setMaxAge(0);
+                    resp.addCookie(oneCookie);
+                }
             }
+            isFirstTime = false;
         }
         Path path = Paths.get("content/menu.html");
         ServletOutputStream servletOutputStream = resp.getOutputStream();
