@@ -17,7 +17,9 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
-        HashMap<String, Object> data = addCss.addCss(true, true, false);
+        addCss.addCssBoot();
+        addCss.addCssStyle();
+        HashMap<String, Object> data = addCss.get();
         engine.render("register.ftl", data, resp);
     }
 

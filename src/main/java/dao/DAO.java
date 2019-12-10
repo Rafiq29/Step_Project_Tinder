@@ -2,7 +2,6 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public interface DAO<T> extends Iterable<T> {
@@ -10,7 +9,7 @@ public interface DAO<T> extends Iterable<T> {
 
     List<T> getDatabase();
 
-    Optional<T> getByValue(int id);
+    Integer size();
 
     List<Integer> getAllId();
 

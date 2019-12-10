@@ -5,15 +5,23 @@ import dao.UserDAO;
 import libs.Like;
 import libs.User;
 
-import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LikeService {
     private UserDAO users;
     private LikesDAO likes;
     public static boolean liked;
+    public int count;
     private int id;
 
+    public int getLocalId() {
+        return id;
+    }
+
     public LikeService() {
+        count = 0;
+        liked = false;
         likes = new LikesDAO();
         users = new UserDAO();
     }
@@ -26,22 +34,22 @@ public class LikeService {
     }
 
     public User getFirst() {
-        return users.getDatabase().get(0);
+        return getUserNotMe().collect(Collectors.toList()).get(0);
     }
 
-    public User getNext(int currentUser) {
+    public Stream<User> getUserNotMe() {
         return users.stream()
-                .filter(oneUser -> oneUser.getId() == currentUser + 1 && oneUser.getId() != id)
-                .findFirst()
-                .orElse(users.getDatabase().get(0));
+                .filter(oneUser -> oneUser.getId() != id);
+    }
+
+    public User getNext() {
+        if (count == getUserNotMe().count() && !liked)
+            count = 0;
+        return getUserNotMe().collect(Collectors.toList()).get(count++);
     }
 
     public void setLocalId(int id) {
         this.id = id;
     }
-
-    public boolean isLast(int id) {
-        List<Integer> allId = users.getAllId();
-        return allId.get(allId.size() - 1) == id;
-    }
 }
+

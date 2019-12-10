@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,14 +44,6 @@ public class UserDAO implements DAO<User> {
         return users;
     }
 
-    @Override
-    public Optional<User> getByValue(int id) {
-        for (User oneUser : users) {
-            if (oneUser.getId() == id)
-                return Optional.of(oneUser);
-        }
-        return Optional.empty();
-    }
 
     @Override
     public List<Integer> getAllId() {
@@ -68,6 +59,11 @@ public class UserDAO implements DAO<User> {
         PreparedStatement preparedStatement = connection.prepareStatement(SQLQ);
         preparedStatement.executeUpdate();
         users = new LinkedList<>();
+    }
+
+    @Override
+    public Integer size() {
+        return users.size();
     }
 
     @Override

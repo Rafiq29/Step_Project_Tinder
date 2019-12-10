@@ -7,7 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,18 +43,13 @@ public class MessageDAO implements DAO<Message> {
     }
 
     @Override
-    public List<Message> getDatabase() {
-        return messages;
+    public Integer size() {
+        return messages.size();
     }
 
     @Override
-    public Optional<Message> getByValue(int id) {
-        for (Message message : messages) {
-            if (message.getId() == id) {
-                return Optional.of(message);
-            }
-        }
-        return Optional.empty();
+    public List<Message> getDatabase() {
+        return messages;
     }
 
     @Override

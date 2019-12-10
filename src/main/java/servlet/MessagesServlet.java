@@ -36,7 +36,10 @@ public class MessagesServlet extends HttpServlet {
         User user = service.getUser(receiverId);
         List<String> formattedMessages = service.getFormattedMessages(senderId, receiverId);
         ManuallyAddCss addCss = new ManuallyAddCss();
-        HashMap<String, Object> data = addCss.addCss(true, true, true);
+        addCss.addCssStyle();
+        addCss.addCssBoot();
+        addCss.addCssFont();
+        HashMap<String, Object> data = addCss.get();
 
         data.put("userTo", user.getName());
         if (!formattedMessages.isEmpty())

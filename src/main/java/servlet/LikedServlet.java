@@ -31,7 +31,10 @@ public class LikedServlet extends HttpServlet {
         List<User> likedUsers = service.getLikedUsers(localId);
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
-        HashMap<String, Object> data = addCss.addCss(true, true, true);
+        addCss.addCssBoot();
+        addCss.addCssFont();
+        addCss.addCssStyle();
+        HashMap<String, Object> data = addCss.get();
         data.put("likedPeoples", likedUsers);
         engine.render("people-list.ftl", data, resp);
     }

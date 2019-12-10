@@ -5,6 +5,7 @@ import libs.User;
 import service.LikeService;
 import service.ManuallyAddCss;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,12 +20,21 @@ public class LikeServlet extends HttpServlet {
         service = new LikeService();
         user = service.getFirst();
     }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Cookie[] cookies = req.getCookies();
+        for (Cookie oneCookie : cookies)
+            if (oneCookie.getName().equals("%ID%"))
+                service.setLocalId(Integer.parseInt(oneCookie.getValue()));
+        if (user.getId() == service.getLocalId()) {
+            user = service.getNext();
+        }
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
-        HashMap<String, Object> data = addCss.addCss(true, true, true);
+        addCss.addCssStyle();
+        addCss.addCssFont();
+        addCss.addCssBoot();
+        HashMap<String, Object> data = addCss.get();
         data.put("id", user.getId());
         data.put("name", user.getName());
         data.put("surname", user.getSurname());
@@ -35,18 +45,14 @@ public class LikeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        user = service.getNext(user.getId());
-        service.setLocalId(user.getId());
-        String likeId = req.getParameter("like");
-        int id = -1;
-        if (likeId != null)
-            id = Integer.parseInt(likeId);
-        if (id != -1)
-            service.like(id);
-        if (service.isLast(id) && LikeService.liked)
-            resp.sendRedirect("/liked/");
-        else
+        try {
+            user = service.getNext();
+            String like = req.getParameter("like");
+            if (like != null)
+                service.like(user.getId());
             resp.sendRedirect("/like/");
-        //TODO likedService.like("user_liked")
+        } catch (IndexOutOfBoundsException ex) {
+            resp.sendRedirect("/liked/");
+        }
     }
 }

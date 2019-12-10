@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,19 +41,15 @@ public class LikesDAO implements DAO<Like> {
     }
 
     @Override
+    public Integer size() {
+        return likes.size();
+    }
+
+    @Override
     public List<Like> getDatabase() {
         return likes;
     }
 
-    @Override
-    public Optional<Like> getByValue(int id) {
-        for (Like like : likes) {
-            if (like.getId() == id) {
-                return Optional.of(like);
-            }
-        }
-        return Optional.empty();
-    }
 
     @Override
     public List<Integer> getAllId() {

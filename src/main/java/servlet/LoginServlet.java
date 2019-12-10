@@ -25,7 +25,9 @@ public class LoginServlet extends HttpServlet {
         }
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
-        HashMap<String, Object> data = addCss.addCss(true, true, false);
+        addCss.addCssBoot();
+        addCss.addCssStyle();
+        HashMap<String, Object> data = addCss.get();
         engine.render("login.ftl", data, resp);
     }
 

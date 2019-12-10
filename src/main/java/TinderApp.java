@@ -17,7 +17,7 @@ public class TinderApp {
         handler.addFilter(EmptyCookieFilter.class, "/messages/*", EnumSet.of(DispatcherType.REQUEST));
         handler.addFilter(MessageFilter.class, "/messages/*", EnumSet.of(DispatcherType.REQUEST));
         handler.addFilter(EmptyCookieFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
-
+        handler.addFilter(EmptyCookieFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
 
         handler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
         handler.addServlet(new ServletHolder(new LikeServlet()), "/like/*");
