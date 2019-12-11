@@ -68,7 +68,6 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public void add(User user) {
-        //TODO: INSERT DATA to the database
         try {
             Connection conn = DbConnection.getConnection();
             final String SQLQ = "INSERT INTO users (username, password, gender, profession, imgurl, name, surname) values (?,?,?,?,?,?,?)";

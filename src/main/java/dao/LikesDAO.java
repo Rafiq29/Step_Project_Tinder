@@ -67,7 +67,6 @@ public class LikesDAO implements DAO<Like> {
 
     @Override
     public void add(Like like) {
-        //TODO: INSERT DATA to the database
         try {
             Connection conn = DbConnection.getConnection();
             final String SQLQ = "INSERT INTO likes (user_likes, user_liked) values (?,?)";

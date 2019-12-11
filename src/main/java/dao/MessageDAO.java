@@ -76,7 +76,6 @@ public class MessageDAO implements DAO<Message> {
 
     @Override
     public void add(Message message) {
-        //TODO: INSERT DATA to the database
         try {
             Connection conn = DbConnection.getConnection();
             final String SQLQ = "INSERT INTO message (user_from, user_to, message, localId, datetime) values (?,?,?,?,?)";
