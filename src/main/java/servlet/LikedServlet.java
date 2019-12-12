@@ -24,9 +24,11 @@ public class LikedServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Cookie[] cookies = req.getCookies();
-        for (Cookie oneCookie : cookies) {
-            if (oneCookie.getName().equals("%ID%"))
-                localId = Integer.parseInt(oneCookie.getValue());
+        if (cookies!=null) {
+            for (Cookie oneCookie : cookies) {
+                if (oneCookie.getName().equals("%ID%"))
+                    localId = Integer.parseInt(oneCookie.getValue());
+            }
         }
         List<User> likedUsers = service.getLikedUsers(localId);
         TemplateEngine engine = new TemplateEngine("./content");

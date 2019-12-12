@@ -17,10 +17,12 @@ public class MenuServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (isFirstTime) {
             Cookie[] cookies = req.getCookies();
-            for (Cookie oneCookie : cookies) {
-                if (oneCookie.getName().equals("%ID%")) {
-                    oneCookie.setMaxAge(0);
-                    resp.addCookie(oneCookie);
+            if (cookies!=null) {
+                for (Cookie oneCookie : cookies) {
+                    if (oneCookie.getName().equals("%ID%")) {
+                        oneCookie.setMaxAge(0);
+                        resp.addCookie(oneCookie);
+                    }
                 }
             }
             isFirstTime = false;
