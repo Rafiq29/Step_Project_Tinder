@@ -51,7 +51,7 @@ public class LikeServlet extends HttpServlet {
             user = service.getNext();
             String like = req.getParameter("like");
             if (like != null)
-                service.like(user.getId());
+                service.like(Integer.parseInt(like));
             resp.sendRedirect("/like/");
         } catch (IndexOutOfBoundsException ex) {
             resp.sendRedirect("/liked/");

@@ -18,11 +18,17 @@ public class LikedService {
     }
 
     public List<User> getLikedUsers(int localId) {
-        List<Like> likedUserIds = likes.stream()
-                .filter(oneLike -> oneLike.getUser_likes() == localId)
-                .collect(Collectors.toList());
+        List<Like> likedUserIds = getLikedUserIds(localId);
         return users.stream()
                 .filter(oneUser -> likedUserIds.contains(new Like(localId, oneUser.getId())))
                 .collect(Collectors.toList());
     }
+
+    public List<Like> getLikedUserIds(int localId) {
+        likes.read();
+        return likes.stream()
+                .filter(oneLike -> oneLike.getUser_likes() == localId)
+                .collect(Collectors.toList());
+    }
+
 }

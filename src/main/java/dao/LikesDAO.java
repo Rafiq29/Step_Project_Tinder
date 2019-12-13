@@ -23,7 +23,7 @@ public class LikesDAO implements DAO<Like> {
 
     @Override
     public void read() {
-
+        likes = new LinkedList<>();
         try {
             Connection conn = DbConnection.getConnection();
             final String SQLQ = "SELECT * FROM likes";
