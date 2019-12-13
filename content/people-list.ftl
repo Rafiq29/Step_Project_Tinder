@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="overflow-x: visible">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,14 +7,13 @@
     <meta name="author" content="">
     <link rel="icon" href="img/favicon.ico">
     <title>People list</title>
-    ${font}
+    <link rel="stylesheet" href="/static/css/font.css">
     <!-- Bootstrap core CSS -->
-    ${boot}
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    ${style}
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2">

@@ -3,7 +3,6 @@ package servlet;
 import libs.TemplateEngine;
 import libs.User;
 import service.LikedService;
-import service.ManuallyAddCss;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +16,8 @@ public class LikedServlet extends HttpServlet {
     private int localId;
     private LikedService service;
 
-    public LikedServlet() {
-        service = new LikedService();
+    public LikedServlet(LikedService service) {
+        this.service = service;
     }
 
     @Override
@@ -31,11 +30,7 @@ public class LikedServlet extends HttpServlet {
 
         List<User> likedUsers = service.getLikedUsers(localId);
         TemplateEngine engine = new TemplateEngine("./content");
-        ManuallyAddCss addCss = new ManuallyAddCss();
-        addCss.addCssBoot();
-        addCss.addCssFont();
-        addCss.addCssStyle();
-        HashMap<String, Object> data = addCss.get();
+        HashMap<String, Object> data = new HashMap<>();
         data.put("likedPeoples", likedUsers);
         engine.render("people-list.ftl", data, resp);
     }

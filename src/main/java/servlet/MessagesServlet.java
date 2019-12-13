@@ -2,7 +2,6 @@ package servlet;
 
 import libs.TemplateEngine;
 import libs.User;
-import service.ManuallyAddCss;
 import service.MessageService;
 
 import javax.servlet.http.Cookie;
@@ -37,12 +36,7 @@ public class MessagesServlet extends HttpServlet {
         TemplateEngine engine = new TemplateEngine("./content");
         User user = service.getUser(receiverId);
         List<String> formattedMessages = service.getFormattedMessages(senderId, receiverId);
-        ManuallyAddCss addCss = new ManuallyAddCss();
-        addCss.addCssStyle();
-        addCss.addCssBoot();
-        addCss.addCssFont();
-        HashMap<String, Object> data = addCss.get();
-
+        HashMap<String, Object> data = new HashMap<>();
         data.put("userTo", user.getName());
         if (!formattedMessages.isEmpty())
             data.put("messages", formattedMessages);

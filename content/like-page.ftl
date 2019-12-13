@@ -8,13 +8,11 @@
     <link rel="icon" href="img/favicon.ico">
 
     <title>Like page</title>
-    ${font}
-
+    <link rel="stylesheet" href="/static/css/font.css">
     <!-- Bootstrap core CSS -->
-    ${boot}
-
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    ${style}
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body style="background-color: #f5f5f5;">
 

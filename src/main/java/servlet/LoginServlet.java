@@ -1,35 +1,43 @@
 package servlet;
 
 import libs.LoginException;
-import libs.TemplateEngine;
 import libs.User;
 import service.LoginService;
-import service.ManuallyAddCss;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class LoginServlet extends HttpServlet {
+    private LoginService loginService;
+
+    public LoginServlet() {
+        loginService = new LoginService();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Cookie[] cookies = req.getCookies();
-        if (cookies != null)
-            for (Cookie oneCookie : cookies) {
-                if (oneCookie.getName().equals("%ID%")) {
-                    oneCookie.setMaxAge(0);
-                    resp.addCookie(oneCookie);
+        if (!loginService.isLogged()) {
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null) {
+                for (Cookie oneCookie : cookies) {
+                    if (oneCookie.getName().equals("%ID%")) {
+                        oneCookie.setMaxAge(0);
+                        resp.addCookie(oneCookie);
+                    }
                 }
             }
-        TemplateEngine engine = new TemplateEngine("./content");
-        ManuallyAddCss addCss = new ManuallyAddCss();
-        addCss.addCssBoot();
-        addCss.addCssStyle();
-        HashMap<String, Object> data = addCss.get();
-        engine.render("login.ftl", data, resp);
+            Path path = Paths.get("./content/login.html");
+            ServletOutputStream outputStream = resp.getOutputStream();
+            Files.copy(path, outputStream);
+        } else
+            resp.sendRedirect("/like/");
     }
 
     @Override
@@ -37,7 +45,6 @@ public class LoginServlet extends HttpServlet {
         String login = req.getParameter("email");
         String password = req.getParameter("password");
         try {
-            LoginService loginService = new LoginService();
             int id = loginService.check(new User(login, password));
             resp.addCookie(new Cookie("%ID%", String.valueOf(id)));
             resp.sendRedirect("/like/*");

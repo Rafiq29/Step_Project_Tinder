@@ -4,7 +4,6 @@ import libs.OutOfUserException;
 import libs.TemplateEngine;
 import libs.User;
 import service.LikeService;
-import service.ManuallyAddCss;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +32,7 @@ public class LikeServlet extends HttpServlet {
                 user = service.getNext(user.getId());
 
             TemplateEngine engine = new TemplateEngine("./content");
-            ManuallyAddCss addCss = new ManuallyAddCss();
-            addCss.addCssStyle();
-            addCss.addCssFont();
-            addCss.addCssBoot();
-            HashMap<String, Object> data = addCss.get();
+            HashMap<String, Object> data = new HashMap<>();
             data.put("id", user.getId());
             data.put("name", user.getName());
             data.put("surname", user.getSurname());

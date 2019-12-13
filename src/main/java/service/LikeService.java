@@ -6,7 +6,6 @@ import libs.Like;
 import libs.OutOfUserException;
 import libs.User;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,7 +25,7 @@ public class LikeService {
         liked = false;
         likes = new LikesDAO();
         users = new UserDAO();
-        userIds = new LinkedList<>(users.getAllId());
+        userIds = users.getAllId();
     }
 
     public void like(int user_liked) {

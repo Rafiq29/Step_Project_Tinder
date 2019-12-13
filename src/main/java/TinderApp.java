@@ -1,6 +1,8 @@
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import service.AddCssServlet;
+import service.LikedService;
 import servlet.*;
 
 public class TinderApp {
@@ -12,12 +14,13 @@ public class TinderApp {
 //        handler.addFilter(new FilterHolder(new EmptyCookieFilter("/messages/*")), "/messages/*", EnumSet.of(DispatcherType.REQUEST));
 //        handler.addFilter(new FilterHolder(new MessageFilter()), "/messages/*", EnumSet.of(DispatcherType.REQUEST));
 //        handler.addFilter(new FilterHolder(new EmptyCookieFilter("/login/*")), "/login/*", EnumSet.of(DispatcherType.REQUEST));
-
+        LikedService likedService = new LikedService();
         handler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
+        handler.addServlet(new ServletHolder(new AddCssServlet()), "/static/*");
         handler.addServlet(new ServletHolder(new LikeServlet()), "/like/*");
         handler.addServlet(new ServletHolder(new LoginServlet()), "/login/*");
         handler.addServlet(new ServletHolder(new MessagesServlet()), "/messages/*");
-        handler.addServlet(new ServletHolder(new LikedServlet()), "/liked/*");
+        handler.addServlet(new ServletHolder(new LikedServlet(likedService)), "/liked/*");
         handler.addServlet(new ServletHolder(new MenuServlet()), "/*");
 
         server.setHandler(handler);
