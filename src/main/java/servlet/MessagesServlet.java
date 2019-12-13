@@ -28,12 +28,11 @@ public class MessagesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Cookie[] cookies = req.getCookies();
-        if (cookies!=null) {
-            for (Cookie oneCookie : cookies)
-                if (oneCookie.getName().equals("%ID%"))
-                    senderId = Integer.parseInt(oneCookie.getValue());
-            receiverId = Integer.parseInt(req.getParameter("id"));
-        }
+        for (Cookie oneCookie : cookies)
+            if (oneCookie.getName().equals("%ID%"))
+                senderId = Integer.parseInt(oneCookie.getValue());
+        receiverId = Integer.parseInt(req.getParameter("id"));
+
         TemplateEngine engine = new TemplateEngine("./content");
         User user = service.getUser(receiverId);
         List<String> formattedMessages = service.getFormattedMessages(senderId, receiverId);

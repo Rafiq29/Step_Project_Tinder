@@ -5,13 +5,14 @@ import dao.UserDAO;
 import libs.Like;
 import libs.User;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LikeService {
     private UserDAO users;
     private LikesDAO likes;
-    public static boolean liked;
+    private boolean liked;
     public int count;
     private int id;
 
@@ -31,6 +32,12 @@ public class LikeService {
         Like like = new Like(id, user_liked);
         if (!likes.getDatabase().contains(like))
             likes.add(like);
+    }
+
+    public boolean isAllLiked() {
+        List<Like> likes = this.likes.getLikes(id);
+        int i = users.size() - 1;
+        return likes.size() == i;
     }
 
     public User getFirst() {

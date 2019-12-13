@@ -20,17 +20,17 @@ public class LikeServlet extends HttpServlet {
         service = new LikeService();
         user = service.getFirst();
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Cookie[] cookies = req.getCookies();
-        if (cookies!=null) {
-            for (Cookie oneCookie : cookies)
-                if (oneCookie.getName().equals("%ID%"))
-                    service.setLocalId(Integer.parseInt(oneCookie.getValue()));
-            if (user.getId() == service.getLocalId()) {
-                user = service.getNext();
-            }
+        for (Cookie oneCookie : cookies)
+            if (oneCookie.getName().equals("%ID%"))
+                service.setLocalId(Integer.parseInt(oneCookie.getValue()));
+        if (user.getId() == service.getLocalId()) {
+            user = service.getNext();
         }
+
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
         addCss.addCssStyle();

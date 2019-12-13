@@ -13,11 +13,10 @@ public class TinderApp {
         Server server = new Server(8088);
         ServletContextHandler handler = new ServletContextHandler();
 
-//        handler.addFilter(EmptyCookieFilter.class, "/like/*", EnumSet.of(DispatcherType.REQUEST));
-//        handler.addFilter(EmptyCookieFilter.class, "/messages/*", EnumSet.of(DispatcherType.REQUEST));
-//        handler.addFilter(MessageFilter.class, "/messages/*", EnumSet.of(DispatcherType.REQUEST));
-//        handler.addFilter(EmptyCookieFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
-//        handler.addFilter(EmptyCookieFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
+        handler.addFilter(EmptyCookieFilter.class, "/like/*", EnumSet.of(DispatcherType.REQUEST));
+        handler.addFilter(EmptyCookieFilter.class, "/messages/*", EnumSet.of(DispatcherType.REQUEST));
+        handler.addFilter(MessageFilter.class, "/messages/*", EnumSet.of(DispatcherType.REQUEST));
+        handler.addFilter(EmptyCookieFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
 
         handler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
         handler.addServlet(new ServletHolder(new LikeServlet()), "/like/*");
