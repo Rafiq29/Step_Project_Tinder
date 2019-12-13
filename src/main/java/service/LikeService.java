@@ -3,6 +3,7 @@ package service;
 import dao.LikesDAO;
 import dao.UserDAO;
 import libs.Like;
+import libs.OutOfUserException;
 import libs.User;
 
 import java.util.LinkedList;
@@ -44,14 +45,19 @@ public class LikeService {
                 .filter(oneUser -> oneUser.getId() != id);
     }
 
-    public boolean isLast(int id) {
+    public boolean isLast() {
         return userIds.isEmpty();
     }
 
-    public User getNext(int user_liked) {
-        User user = users.get(userIds.get(0));
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public User getNext(int user_liked) throws OutOfUserException {
         userIds.remove(Integer.valueOf(user_liked));
-        return user;
+        if (!isLast())
+            return users.get(userIds.get(0));
+        else throw new OutOfUserException();
     }
 
     public void setLocalId(int id) {

@@ -1,5 +1,6 @@
 package servlet;
 
+import libs.OutOfUserException;
 import libs.TemplateEngine;
 import libs.User;
 import service.LikeService;
@@ -27,33 +28,38 @@ public class LikeServlet extends HttpServlet {
         for (Cookie oneCookie : cookies)
             if (oneCookie.getName().equals("%ID%"))
                 service.setLocalId(Integer.parseInt(oneCookie.getValue()));
+        try {
+            if (user.getId() == service.getLocalId())
+                user = service.getNext(user.getId());
 
-        if (user.getId() == service.getLocalId())
-            user = service.getNext(user.getId());
+            TemplateEngine engine = new TemplateEngine("./content");
+            ManuallyAddCss addCss = new ManuallyAddCss();
+            addCss.addCssStyle();
+            addCss.addCssFont();
+            addCss.addCssBoot();
+            HashMap<String, Object> data = addCss.get();
+            data.put("id", user.getId());
+            data.put("name", user.getName());
+            data.put("surname", user.getSurname());
+            data.put("username", user.getUsername());
+            data.put("imgURL", user.getImgURL());
+            engine.render("like-page.ftl", data, resp);
 
-        TemplateEngine engine = new TemplateEngine("./content");
-        ManuallyAddCss addCss = new ManuallyAddCss();
-        addCss.addCssStyle();
-        addCss.addCssFont();
-        addCss.addCssBoot();
-        HashMap<String, Object> data = addCss.get();
-        data.put("id", user.getId());
-        data.put("name", user.getName());
-        data.put("surname", user.getSurname());
-        data.put("username", user.getUsername());
-        data.put("imgURL", user.getImgURL());
-        engine.render("like-page.ftl", data, resp);
+        } catch (OutOfUserException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        user = service.getNext(user.getId());
         String like = req.getParameter("like");
         if (like != null)
             service.like(Integer.parseInt(like));
-        if (!service.isLast(user.getId()))
+        try {
+            user = service.getNext(user.getId());
             resp.sendRedirect("/like/");
-        else
+        } catch (OutOfUserException ex) {
             resp.sendRedirect("/liked/");
+        }
     }
 }
