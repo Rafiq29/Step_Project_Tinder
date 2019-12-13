@@ -27,9 +27,9 @@ public class LikeServlet extends HttpServlet {
         for (Cookie oneCookie : cookies)
             if (oneCookie.getName().equals("%ID%"))
                 service.setLocalId(Integer.parseInt(oneCookie.getValue()));
-        if (user.getId() == service.getLocalId()) {
-            user = service.getNext();
-        }
+
+        if (user.getId() == service.getLocalId())
+            user = service.getNext(user.getId());
 
         TemplateEngine engine = new TemplateEngine("./content");
         ManuallyAddCss addCss = new ManuallyAddCss();
@@ -47,14 +47,13 @@ public class LikeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        try {
-            user = service.getNext();
-            String like = req.getParameter("like");
-            if (like != null)
-                service.like(Integer.parseInt(like));
+        user = service.getNext(user.getId());
+        String like = req.getParameter("like");
+        if (like != null)
+            service.like(Integer.parseInt(like));
+        if (!service.isLast(user.getId()))
             resp.sendRedirect("/like/");
-        } catch (IndexOutOfBoundsException ex) {
+        else
             resp.sendRedirect("/liked/");
-        }
     }
 }

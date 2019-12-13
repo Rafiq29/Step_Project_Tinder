@@ -53,7 +53,7 @@ public class LikesDAO implements DAO<Like> {
 
     @Override
     public List<Integer> getAllId() {
-        return likes.stream().map(Like::getId).collect(Collectors.toCollection(() -> new LinkedList<Integer>()));
+        return likes.stream().map(Like::getId).collect(Collectors.toCollection(LinkedList::new));
     }
 
     @Override

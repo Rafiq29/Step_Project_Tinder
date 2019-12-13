@@ -17,12 +17,12 @@ public class UserDAO implements DAO<User> {
     private List<User> users;
 
     public UserDAO() {
-        users = new LinkedList<>();
         read();
     }
 
     @Override
     public void read() {
+        users = new LinkedList<>();
         try {
             Connection conn = DbConnection.getConnection();
             final String SQLQ = "SELECT * FROM users";
@@ -47,6 +47,7 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public List<Integer> getAllId() {
+        read();
         List<Integer> result = new LinkedList<>();
         users.forEach(user -> result.add(user.getId()));
         return result;

@@ -5,14 +5,16 @@ import dao.UserDAO;
 import libs.Like;
 import libs.User;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LikeService {
     private UserDAO users;
     private LikesDAO likes;
+    private List<Integer> userIds;
     private boolean liked;
-    public int count;
     private int id;
 
     public int getLocalId() {
@@ -20,10 +22,10 @@ public class LikeService {
     }
 
     public LikeService() {
-        count = 0;
         liked = false;
         likes = new LikesDAO();
         users = new UserDAO();
+        userIds = new LinkedList<>(users.getAllId());
     }
 
     public void like(int user_liked) {
@@ -42,10 +44,14 @@ public class LikeService {
                 .filter(oneUser -> oneUser.getId() != id);
     }
 
-    public User getNext() {
-        if (count == getUserNotMe().count() && !liked)
-            count = 0;
-        return getUserNotMe().collect(Collectors.toList()).get(count++);
+    public boolean isLast(int id) {
+        return userIds.isEmpty();
+    }
+
+    public User getNext(int user_liked) {
+        User user = users.get(userIds.get(0));
+        userIds.remove(Integer.valueOf(user_liked));
+        return user;
     }
 
     public void setLocalId(int id) {
