@@ -31,7 +31,7 @@ public class MessageService {
     private String convertToSenderMessage(String message) {
         return "<li class=\"send-msg float-right mb-2\"><p class=\"pt-1 pb-1 pl-2 pr-2 m-0 rounded\">" +
                 message +
-                "</p><span class=\"receive-msg-time\">" + LocalDateTime.now().toString() + "</div></li>";
+                "</p><span class=\"receive-msg-time\">" + LocalDateTime.now().toString() + "</li><br>";
     }
 
     private String convertToReceiverMessage(String message, String profileURL) {
@@ -39,7 +39,7 @@ public class MessageService {
                 + profileURL +
                 "\" class=\"float-left\"></div><div class=\"receive-msg-desc float-left ml-2\"><p class=\"bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded\">"
                 + message +
-                "</p><span class=\"receive-msg-time\">" + LocalDateTime.now().toString() + "</div></li>";
+                "</p><span class=\"receive-msg-time\">" + LocalDateTime.now().toString() + "</li>";
     }
 
     public User getUser(int id) {

@@ -13,7 +13,7 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body>
+<body style="overflow-x: auto">
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2">
@@ -29,7 +29,7 @@
                                 <tr>
                                     <td width="10">
                                         <div class="avatar-img">
-                                            <img width="100" style="height:auto" src="${people.imgURL}"/>  
+                                            <img width="50" style="height:auto" src="${people.imgURL}"/>  
                                         </div>
                                     </td>
                                     <td class="align-middle">
@@ -42,9 +42,9 @@
                                         ${people.gender}
                                     </td>
                                     <td class="align-middle">
-                                        <form method="get" action="/messages/">
-                                            <button type="submit" name="id" value="${people.id}"
-                                                    class="btn btn-outline-success btn-block"><span>Chat</span>
+                                        <form method="get" action="/messages/${people.id}">
+                                            <button type="submit" class="btn btn-outline-success btn-block">
+                                                <span>Chat</span>
                                             </button>
                                         </form>
                                     </td>

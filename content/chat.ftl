@@ -47,9 +47,12 @@
             </div>
             <div class="chat-content">
                 <div class="col-md-12 chats pt-3 pl-2 pr-3 pb-3">
-                    <#list messages as message>
-                        ${message}
-                    </#list>
+                    <ul>
+                        <#list messages as message>
+
+                            ${message}
+                        </#list>
+                    </ul>
                 </div>
                 <div class="col-md-12 p-2 msg-box border border-primary">
                     <div class="row">
@@ -58,10 +61,11 @@
                         </div>
                         <div class="col-md-7 pl-0">
                             <form method="post">
-                                <input type="text" style="visibility: visible" name="message" class="border-0"
-                                       placeholder=" Send message"/>
-                                <button type="submit" style="visibility: visible" name="send"><span
-                                            style="visibility: visible">Send</span></button>
+                                <label>
+                                    <input type="text" style="visibility: visible" name="message" class="border-0"
+                                           placeholder="Send message"/>
+                                </label>
+                                <button type="submit" name="send"><span>Send</span></button>
                             </form>
                         </div>
                         <div class="col-md-3 text-right options-right">

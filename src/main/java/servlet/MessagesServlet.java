@@ -31,7 +31,7 @@ public class MessagesServlet extends HttpServlet {
         for (Cookie oneCookie : cookies)
             if (oneCookie.getName().equals("%ID%"))
                 senderId = Integer.parseInt(oneCookie.getValue());
-        receiverId = Integer.parseInt(req.getParameter("id"));
+        receiverId = Integer.parseInt(req.getPathInfo().substring(1));
 
         TemplateEngine engine = new TemplateEngine("./content");
         User user = service.getUser(receiverId);
@@ -42,16 +42,14 @@ public class MessagesServlet extends HttpServlet {
             data.put("messages", formattedMessages);
         else
             data.put("messages", new LinkedList<Integer>());
-
-
         engine.render("chat.ftl", data, resp);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String message = req.getParameter("message");
         service.write(senderId, receiverId, message);
+        resp.sendRedirect(String.format("/messages/%d", receiverId));
         //TODO  messageWriter.writeMessage("message","Date","ID","User_TO","User_FROM");
     }
 }
