@@ -32,9 +32,9 @@ public class MessageDAO implements DAO<Message> {
             while (resultSet.next())
                 messages.add(new Message(
                         resultSet.getInt("id"),
+                        resultSet.getInt("user_to"),
                         resultSet.getInt("user_from"),
-                        resultSet.getInt("user_from"),
-                        resultSet.getString("messages"),
+                        resultSet.getString("message"),
                         resultSet.getInt("localId"),
                         resultSet.getString("dateTime")));
         } catch (SQLException e) {

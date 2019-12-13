@@ -20,8 +20,6 @@ public class MessagesServlet extends HttpServlet {
     private MessageService service;
 
     public MessagesServlet() {
-        senderId = -1;
-        receiverId = -1;
         service = new MessageService();
     }
 

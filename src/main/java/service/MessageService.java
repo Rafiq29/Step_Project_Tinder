@@ -60,7 +60,8 @@ public class MessageService {
 
     public List<String> getFormattedMessages(int sender, int receiver) {
         User receiverUser = users.get(receiver);
-        return getMessages(sender, receiver).stream()
+        List<Message> messages = getMessages(sender, receiver);
+        return messages.stream()
                 .map(oneMessage -> {
                     if (oneMessage.getUserTo() == receiver && oneMessage.getUserFrom() == sender)
                         return convertToSenderMessage(oneMessage.getMessage());
