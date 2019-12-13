@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+
 public class MessagesServlet extends HttpServlet {
     private int senderId;
     private int receiverId;
@@ -55,7 +56,6 @@ public class MessagesServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
         String message = req.getParameter("message");
         service.write(senderId, receiverId, message);
         //TODO  messageWriter.writeMessage("message","Date","ID","User_TO","User_FROM");

@@ -30,7 +30,7 @@
                                 <tr>
                                     <td width="10">
                                         <div class="avatar-img">
-                                            <img class="img-circle" src="${people.imgURL}"/>  
+                                            <img width="100" style="height:auto" src="${people.imgURL}"/>  
                                         </div>
                                     </td>
                                     <td class="align-middle">

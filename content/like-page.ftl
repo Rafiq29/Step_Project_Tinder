@@ -23,11 +23,10 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 text-center">
-                    <img src=${imgURL} alt="" class="mx-auto rounded-circle img-fluid">
+                    <img src=${imgURL} alt="" height="250" width="250" class="mx-auto img-fluid">
                     <h3 class="mb-0 text-truncated">${name} ${surname} <br> (${username})</h3>
                     <br>
                 </div>
-
                 <div class="col-12 col-lg-6">
                     <form method="post">
                         <button type="submit" name="dislike" class="btn btn-outline-danger btn-block">
