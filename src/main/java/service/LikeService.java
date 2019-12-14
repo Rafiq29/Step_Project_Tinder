@@ -56,7 +56,10 @@ public class LikeService {
         userIds.remove(Integer.valueOf(user_liked));
         if (!isLast())
             return users.get(userIds.get(0));
-        else throw new OutOfUserException();
+        else if (isLiked())
+            throw new OutOfUserException();
+        else userIds = users.getAllId();
+        return null;
     }
 
     public void setLocalId(int id) {
