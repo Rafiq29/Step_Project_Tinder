@@ -1,8 +1,7 @@
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import service.AddCssServlet;
-import service.LikedService;
+import service.*;
 import servlet.*;
 
 public class TinderApp {
@@ -10,12 +9,17 @@ public class TinderApp {
         Server server = new Server(8088);
         ServletContextHandler handler = new ServletContextHandler();
 
+        MessageService messageService = new MessageService();
         LikedService likedService = new LikedService();
-        handler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
+        LoginService loginService = new LoginService();
+        LikeService likeService = new LikeService();
+        RegisterService registerService = new RegisterService();
+
+        handler.addServlet(new ServletHolder(new RegisterServlet(registerService)), "/register/*");
         handler.addServlet(new ServletHolder(new AddCssServlet()), "/static/*");
-        handler.addServlet(new ServletHolder(new LikeServlet()), "/like/*");
-        handler.addServlet(new ServletHolder(new LoginServlet()), "/login/*");
-        handler.addServlet(new ServletHolder(new MessagesServlet()), "/messages/*");
+        handler.addServlet(new ServletHolder(new LikeServlet(likeService)), "/like/*");
+        handler.addServlet(new ServletHolder(new LoginServlet(loginService)), "/login/*");
+        handler.addServlet(new ServletHolder(new MessagesServlet(messageService)), "/messages/*");
         handler.addServlet(new ServletHolder(new LikedServlet(likedService)), "/liked/*");
         handler.addServlet(new ServletHolder(new MenuServlet()), "/*");
 

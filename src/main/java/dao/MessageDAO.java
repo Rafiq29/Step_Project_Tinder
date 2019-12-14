@@ -24,6 +24,7 @@ public class MessageDAO implements DAO<Message> {
 
     @Override
     public void read() {
+        messages = new LinkedList<>();
         try {
             Connection conn = DbConnection.getConnection();
             final String SQLQ = "SELECT * FROM message";
