@@ -27,22 +27,17 @@ public class LikeServlet extends HttpServlet {
         for (Cookie oneCookie : cookies)
             if (oneCookie.getName().equals("%ID%"))
                 service.setLocalId(Integer.parseInt(oneCookie.getValue()));
-        try {
-            if (user.getId() == service.getLocalId())
-                user = service.getNext(user.getId());
+        if (user.getId() == service.getLocalId())
+            user = service.getNext(user.getId());
 
-            TemplateEngine engine = new TemplateEngine("./content");
-            HashMap<String, Object> data = new HashMap<>();
-            data.put("id", user.getId());
-            data.put("name", user.getName());
-            data.put("surname", user.getSurname());
-            data.put("username", user.getUsername());
-            data.put("imgURL", user.getImgURL());
-            engine.render("like-page.ftl", data, resp);
-
-        } catch (OutOfUserException ex) {
-            ex.printStackTrace();
-        }
+        TemplateEngine engine = new TemplateEngine("./content");
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("id", user.getId());
+        data.put("name", user.getName());
+        data.put("surname", user.getSurname());
+        data.put("username", user.getUsername());
+        data.put("imgURL", user.getImgURL());
+        engine.render("like-page.ftl", data, resp);
     }
 
     @Override

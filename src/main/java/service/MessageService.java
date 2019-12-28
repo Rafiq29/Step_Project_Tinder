@@ -48,9 +48,11 @@ public class MessageService {
     }
 
     public void write(int sender, int receiver, String message) {
-        int lastLocalId = getLastLocalId(sender, receiver);
-        messages.add(new Message(receiver, sender, message, lastLocalId + 1,
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm MM-dd-yyyy"))));
+        if (!message.isEmpty()) {
+            int lastLocalId = getLastLocalId(sender, receiver);
+            messages.add(new Message(receiver, sender, message, lastLocalId + 1,
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm MM-dd-yyyy"))));
+        }
     }
 
     public List<Message> getMessages(int sender, int receiver) {

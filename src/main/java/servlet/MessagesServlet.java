@@ -48,6 +48,5 @@ public class MessagesServlet extends HttpServlet {
         String message = req.getParameter("message");
         service.write(senderId, receiverId, message);
         resp.sendRedirect(String.format("/messages/%d", receiverId));
-        //TODO  messageWriter.writeMessage("message","Date","ID","User_TO","User_FROM");
     }
 }

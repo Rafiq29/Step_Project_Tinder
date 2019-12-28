@@ -1,6 +1,6 @@
 package libs;
 
-public class OutOfUserException extends Exception {
+public class OutOfUserException extends RuntimeException {
     public OutOfUserException() {
     }
 

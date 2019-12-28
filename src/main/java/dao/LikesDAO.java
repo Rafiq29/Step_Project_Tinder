@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LikesDAO implements DAO<Like> {
-    List<Like> likes;
+    private List<Like> likes;
 
     public LikesDAO() {
         likes = new LinkedList<>();
@@ -93,11 +93,5 @@ public class LikesDAO implements DAO<Like> {
     @Override
     public Like get(int id) {
         return stream().filter(oneLike -> oneLike.getId() == id).collect(Collectors.toList()).get(0);
-    }
-
-    public List<Like> getLikes(int userId) {
-        return stream()
-                .filter(oneLike -> oneLike.getUser_likes() == userId)
-                .collect(Collectors.toList());
     }
 }
